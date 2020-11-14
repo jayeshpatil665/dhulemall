@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_back"
+    tools:context=".HomeActivity">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/app_logo"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/app_logo"
+        />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:layout_above="@+id/SignupButton"
+        android:id="@+id/loginButton"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_baseline_fingerprint_24"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:textSize="25sp"
+        android:backgroundTint="#253746"
+        android:onClick="toLoginOptions"
+        android:text="Login" />
+    <Button
+        android:layout_marginTop="5dp"
+        android:id="@+id/SignupButton"
+        android:layout_above="@+id/skip_test"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_baseline_email_24"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:textSize="25sp"
+        android:onClick="toCreateNewAcount"
+        android:backgroundTint="#253746"
+        android:text="signUp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/skip_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/teal_700"
+        android:padding="10dp"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:drawableRight="@drawable/ic_baseline_next_plan_24"
+        android:text="SKIP for now "
+        android:onClick="toSkipStep"
+        android:textColor="@android:color/white"
+        />
+
+</RelativeLayout>
