@@ -92,9 +92,12 @@ public class AdminAddRemoveCategory extends AppCompatActivity {
                         String[] catList =  gson.fromJson(result, String[].class);
                         if (!result.equals("")){
                             Log.i("Out : ",""+catList);
-                            adapter = new ArrayAdapter<String>(AdminAddRemoveCategory.this,R.layout.cat_list_item,catList);
-                            et_view_Category.setThreshold(1);
-                            et_view_Category.setAdapter(adapter);
+                            try{
+                                adapter = new ArrayAdapter<String>(AdminAddRemoveCategory.this,R.layout.cat_list_item,catList);
+                                et_view_Category.setThreshold(1);
+                                et_view_Category.setAdapter(adapter);
+                            }catch (Exception e){}
+
                         }
                         else {
                             showSnackMessage("Error : in category retrival");
@@ -191,7 +194,7 @@ public class AdminAddRemoveCategory extends AppCompatActivity {
     public void createCategory(View view) {
         if (imageView.getDrawable() != null && !et_category_name.getText().toString().trim().equals("")){
             progress3.setVisibility(View.VISIBLE);
-            sendCategoryDataToAPI(et_category_name.getText().toString().trim(),img);
+            sendCategoryDataToAPI(et_category_name.getText().toString(),img);
         }
         else{
             showSnackMessage("All fields are require !");
@@ -213,15 +216,13 @@ public class AdminAddRemoveCategory extends AppCompatActivity {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                  String[] field = new String[3];
+                  String[] field = new String[2];
                   field[0] = "category_name";
                   field[1] = "cat_img";
-                  field[2] = "item_count";
 
-                  String[] data = new String[3];
+                  String[] data = new String[2];
                   data[0] = cat_name;
                   data[1] = img;
-                  data[2] = "0";
                   PutData putData = new PutData("https://dhulemall.ml/API/Category/catUpload.php","POST",field,data);
                   if (putData.startPut()){
                       if (putData.onComplete()){
@@ -262,7 +263,7 @@ public class AdminAddRemoveCategory extends AppCompatActivity {
 
     private void deleteCategoryConfirm(String selectedDelCat) {
 
-        Toast.makeText(this, ""+selectedDelCat, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, ""+selectedDelCat, Toast.LENGTH_SHORT).show();
         Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
@@ -279,8 +280,8 @@ public class AdminAddRemoveCategory extends AppCompatActivity {
                        String result = putData.getResult();
                        if (result.equals("Success")) {
                            progress3.setVisibility(View.GONE);
-                           //Toast.makeText(AdminAddRemoveCategory.this, "Category deleted succesfully !", Toast.LENGTH_SHORT).show();
-                           showSnackMessage("Category deleted succesfully !");
+                           Toast.makeText(AdminAddRemoveCategory.this, "Category deleted succesfully !", Toast.LENGTH_SHORT).show();
+                           //showSnackMessage("Category deleted succesfully !");
                            finish();
                            startActivity(getIntent());
                        }
