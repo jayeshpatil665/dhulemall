@@ -29,4 +29,9 @@ public class AdminPannel extends AppCompatActivity {
         Intent intent = new Intent(AdminPannel.this,AdminAddRemoveCategory.class);
         startActivity(intent);
     }
+
+    public void toAddNewProduct(View view) {
+        Intent intent = new Intent(AdminPannel.this,AddNewProduct.class);
+        startActivity(intent);
+    }
 }

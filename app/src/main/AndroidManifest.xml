@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DhuleMall">
-        <activity android:name=".AdminAddRemoveCategory"></activity>
+        <activity android:name=".AddNewProduct"></activity>
+        <activity android:name=".AdminAddRemoveCategory" />
         <activity android:name=".AdminPannel" />
         <activity android:name=".LoginOptionsActivity" />
         <activity android:name=".CreateAccountActivity" />
