@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rl_upload_product"
     tools:context=".AddNewProduct">
 
     <ScrollView
@@ -48,6 +49,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#00FFFFFF"
+                        android:onClick="selectTitleImage"
                         app:srcCompat="@android:drawable/ic_menu_camera" />
                 </LinearLayout>
 
@@ -68,6 +70,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#00FFFFFF"
+                        android:onClick="selectImage3"
                         app:srcCompat="@android:drawable/ic_menu_camera" />
                 </LinearLayout>
 
@@ -88,6 +91,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:backgroundTint="#00FFFFFF"
+                        android:onClick="selectImage4"
                         app:srcCompat="@android:drawable/ic_menu_camera" />
                 </LinearLayout>
             </LinearLayout>
@@ -102,7 +106,7 @@
                 >
 
                 <AutoCompleteTextView
-                    android:id="@+id/et_view_Category"
+                    android:id="@+id/et_view_Categoryy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="15"
@@ -127,7 +131,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/et_Upload_p_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -135,35 +139,35 @@
                     android:inputType="textPersonName" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName2"
+                    android:id="@+id/et_Upload_p_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:hint="Product Description"
-                    android:inputType="textPersonName" />
+                    android:inputType="textMultiLine" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName4"
+                    android:id="@+id/et_Upload_p_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Price"
-                    android:inputType="textPersonName" />
+                    android:hint="Price (only numbers no ',' quamas)"
+                    android:inputType="number" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName3"
+                    android:id="@+id/et_Upload_p_quantity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Quantity"
-                    android:inputType="textPersonName" />
+                    android:hint="Quantity (only numbers no ',' quamas)"
+                    android:inputType="number" />
 
                 <CheckBox
                     android:id="@+id/checkBox2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="I have checked all fields correctly." />
+                    android:text="I have checked all fields &amp; entered all spelling correctly." />
             </LinearLayout>
 
             <ProgressBar
@@ -177,6 +181,7 @@
                 android:id="@+id/button8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="uploadProduct"
                 android:text="Upload Product" />
 
         </LinearLayout>
