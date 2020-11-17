@@ -22,6 +22,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +57,7 @@ public class AddNewProduct extends AppCompatActivity {
     CheckBox checkBox2;
 
     String productID;
+    ProgressBar progress4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,7 @@ public class AddNewProduct extends AppCompatActivity {
         et_Upload_p_description = findViewById(R.id.et_Upload_p_description);
         et_Upload_p_price = findViewById(R.id.et_Upload_p_price);
         et_Upload_p_quantity = findViewById(R.id.et_Upload_p_quantity);
+        progress4 = findViewById(R.id.progress4);
 
         getAllAvailableCategorys();
         genrateProductID();
@@ -270,7 +273,8 @@ public class AddNewProduct extends AppCompatActivity {
                 String p_quantity = et_Upload_p_quantity.getText().toString().trim();
 
                 if (imageView2.getDrawable() != null && imageView3.getDrawable() != null && imageView4.getDrawable() != null && !p_name.equals("") && !p_description.equals("") && !p_price.equals("") && !p_quantity.equals("")){
-                    showSnackMessage("OK to upload");
+                    //showSnackMessage("OK to upload");
+                    sendInsertDataTOProductsTable(productID,selectedCat,p_name,p_price,p_quantity,p_description,img2,img3,img4);
                 }
                 else {
                     showSnackMessage("All fields are required !");
@@ -280,5 +284,53 @@ public class AddNewProduct extends AppCompatActivity {
                 showSnackMessage("Please Select category first !");
             }
         }
+    }
+
+    private void sendInsertDataTOProductsTable(String productID, String selectedCat, String p_name, String p_price, String p_quantity, String p_description, String img2, String img3, String img4) {
+        progress4.setVisibility(View.VISIBLE);
+        Handler handler = new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+
+                String[] field = new String[9];
+                field[0] = "p_id";
+                field[1] = "category_name";
+                field[2] = "p_name";
+                field[3] = "p_price";
+                field[4] = "p_quantity";
+                field[5] = "p_description";
+                field[6] = "p_image1";
+                field[7] = "p_image2";
+                field[8] = "p_image3";
+
+                String[] data = new String[9];
+                data[0] = productID;
+                data[1] = selectedCat;
+                data[2] = p_name;
+                data[3] = p_price;
+                data[4] = p_quantity;
+                data[5] = p_description;
+                data[6] = img2;
+                data[7] = img3;
+                data[8] = img4;
+
+                PutData putData = new PutData("https://dhulemall.ml/API/Product/productCreate.php","POST",field,data);
+                if (putData.startPut()){
+                    if (putData.onComplete()){
+                        String result = putData.getResult();
+                        if (result.equals("Success")){
+                            progress4.setVisibility(View.GONE);
+                            showSnackMessage("Product Uploaded Succesfully ");
+                        }
+                        else {
+                            progress4.setVisibility(View.GONE);
+                            Toast.makeText(AddNewProduct.this, "Product Already exist !", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+            }
+        });
     }
 }
