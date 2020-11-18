@@ -2,6 +2,7 @@ package in.specialsoft.dhulemall;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -27,6 +29,7 @@ public class RemoveSpecificProduct extends AppCompatActivity {
     String selectedDelPro ="0";
 
     ImageButton imageButton5;
+    Button button9;
     TextInputLayout floating_hintt;
     CheckBox checkBox3;
     @Override
@@ -36,6 +39,7 @@ public class RemoveSpecificProduct extends AppCompatActivity {
 
         et_view_Categoryyy = findViewById(R.id.et_view_Categoryyy);
         imageButton5 = findViewById(R.id.imageButton5);
+        button9 = findViewById(R.id.button9);
         floating_hintt = findViewById(R.id.floating_hintt);
         et_view_pro_list = findViewById(R.id.et_view_pro_list);
         checkBox3 = findViewById(R.id.checkBox3);
@@ -47,17 +51,13 @@ public class RemoveSpecificProduct extends AppCompatActivity {
                 Toast.makeText(RemoveSpecificProduct.this, ""+adapter.getItem(position), Toast.LENGTH_SHORT).show();
                 selectedDelCat = adapter.getItem(position);
 
-                imageButton5.setVisibility(View.GONE);
-
-                if (floating_hintt.getVisibility() == View.VISIBLE && !selectedDelCat.equals(selectedPreDelCat)){
-                   // finish();
-                    //startActivity(getIntent());
-                }
-                else {
-                    floating_hintt.setVisibility(View.VISIBLE);
-                    selectedPreDelCat = selectedDelCat;
-                }
+                floating_hintt.setVisibility(View.VISIBLE);
                 et_view_pro_list.setText("");
+                imageButton5.setVisibility(View.GONE);
+                button9.setVisibility(View.GONE);
+                checkBox3.setVisibility(View.GONE);
+                checkBox3.setChecked(false);
+
                 getAllAvailableProductNames(selectedDelCat);
             }
         });
@@ -68,6 +68,8 @@ public class RemoveSpecificProduct extends AppCompatActivity {
                 Toast.makeText(RemoveSpecificProduct.this, ""+adapter1.getItem(position), Toast.LENGTH_SHORT).show();
                 selectedDelPro = adapter1.getItem(position);
                 imageButton5.setVisibility(View.VISIBLE);
+                button9.setVisibility(View.VISIBLE);
+                checkBox3.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -89,7 +91,7 @@ public class RemoveSpecificProduct extends AppCompatActivity {
                     if (putData.onComplete()){
                         String result = putData.getResult();
                         String[] catList =  gson.fromJson(result, String[].class);
-                        if (!result.equals("")){
+                        if (!result.equals("null")){
                             Log.i("",""+catList);
                             try {
                                 adapter1 = new ArrayAdapter<String>(RemoveSpecificProduct.this,R.layout.cat_list_item,catList);
@@ -99,7 +101,13 @@ public class RemoveSpecificProduct extends AppCompatActivity {
                             }catch (Exception e){}
                         }
                         else {
-                            showSnackMessage("Error : in Product list retrival");
+                            et_view_pro_list.setText("");
+                            adapter1.clear();
+                            String[] empty = {};
+                            adapter1 = new ArrayAdapter<String>(RemoveSpecificProduct.this,R.layout.cat_list_item,empty);
+                            et_view_pro_list.setThreshold(1);
+                            et_view_pro_list.setAdapter(adapter1);
+                            showSnackMessage("Error : No product exist of category or error in Product list retrival");
                         }
                     }
                 }
@@ -194,5 +202,12 @@ public class RemoveSpecificProduct extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void toUpdateProductInfo(View view) {
+        Intent intent = new Intent(RemoveSpecificProduct.this,AdminUpdateProductDetails.class);
+        intent.putExtra("p_name",selectedDelPro);
+        intent.putExtra("category_name",selectedDelCat);
+        startActivity(intent);
     }
 }

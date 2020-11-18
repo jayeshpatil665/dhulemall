@@ -65,15 +65,9 @@
             android:layout_height="wrap_content"
             android:onClick="toRemoveProduct"
             android:drawableLeft="@drawable/ic_baseline_remove_24"
-            android:text="Remove Product" />
+            android:drawableRight="@drawable/ic_baseline_update_24"
+            android:text="Remove | Update Product " />
 
-        <Button
-            android:id="@+id/button7"
-            android:padding="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_baseline_update_24"
-            android:text="Update Product info" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="20sp"
-            android:text="Remove Specific Product" />
+            android:text="Remove / Update Specific Product" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/floating_hint"
@@ -78,6 +78,19 @@
                 android:backgroundTint="@android:color/transparent"
                 android:layout_weight="1"
                 app:srcCompat="@android:drawable/ic_menu_delete" />
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:onClick="toUpdateProductInfo"
+                android:drawableLeft="@drawable/ic_baseline_update_24"
+                android:text="Update Product info" />
+
+
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 </RelativeLayout>
