@@ -185,6 +185,5 @@
                 android:text="Upload Product" />
 
         </LinearLayout>
-
     </ScrollView>
 </RelativeLayout>
