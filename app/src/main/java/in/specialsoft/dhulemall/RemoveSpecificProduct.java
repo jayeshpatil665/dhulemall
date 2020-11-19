@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -92,7 +91,6 @@ public class RemoveSpecificProduct extends AppCompatActivity {
                         String result = putData.getResult();
                         String[] catList =  gson.fromJson(result, String[].class);
                         if (!result.equals("null")){
-                            Log.i("",""+catList);
                             try {
                                 adapter1 = new ArrayAdapter<String>(RemoveSpecificProduct.this,R.layout.cat_list_item,catList);
                                 et_view_pro_list.setThreshold(1);
@@ -102,7 +100,6 @@ public class RemoveSpecificProduct extends AppCompatActivity {
                         }
                         else {
                             et_view_pro_list.setText("");
-                            adapter1.clear();
                             String[] empty = {};
                             adapter1 = new ArrayAdapter<String>(RemoveSpecificProduct.this,R.layout.cat_list_item,empty);
                             et_view_pro_list.setThreshold(1);
@@ -133,7 +130,6 @@ public class RemoveSpecificProduct extends AppCompatActivity {
                         String result = putData.getResult();
                         String[] catList =  gson.fromJson(result, String[].class);
                         if (!result.equals("")){
-                            Log.i("Out : ",""+catList);
                             try{
                                 adapter = new ArrayAdapter<String>(RemoveSpecificProduct.this,R.layout.cat_list_item,catList);
                                 et_view_Categoryyy.setThreshold(1);

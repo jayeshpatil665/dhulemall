@@ -107,7 +107,6 @@ public class AddNewProduct extends AppCompatActivity {
                         String result = putData.getResult();
                         String[] catList =  gson.fromJson(result, String[].class);
                         if (!result.equals("")){
-                            Log.i("Out : ",""+catList);
                             try{
                                 adapter = new ArrayAdapter<String>(AddNewProduct.this,R.layout.cat_list_item,catList);
                                 et_view_Categoryy.setThreshold(1);
@@ -231,18 +230,10 @@ public class AddNewProduct extends AppCompatActivity {
     private String getBase64(Bitmap bm1) {
         if (bm1 != null){
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            if (type.equals("thumbnail")){
-                bm1.compress(Bitmap.CompressFormat.JPEG,50,bos);
-            }
-            else {
-                bm1.compress(Bitmap.CompressFormat.JPEG,100,bos);
-            }
-
-
+            bm1.compress(Bitmap.CompressFormat.JPEG,50,bos);
             bb = bos.toByteArray();
             base64String = Base64.encodeToString(bb,Base64.DEFAULT);
         }
-        Log.i("Image : ",base64String);
         return base64String;
     }
     //Image selection END .....................................

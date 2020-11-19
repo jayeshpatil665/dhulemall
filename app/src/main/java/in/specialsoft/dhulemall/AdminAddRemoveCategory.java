@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,8 +30,6 @@ import com.google.gson.Gson;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-
-import in.specialsoft.dhulemall.UserDetails.Users;
 
 public class AdminAddRemoveCategory extends AppCompatActivity {
 
@@ -91,7 +88,6 @@ public class AdminAddRemoveCategory extends AppCompatActivity {
                         String result = putData.getResult();
                         String[] catList =  gson.fromJson(result, String[].class);
                         if (!result.equals("")){
-                            Log.i("Out : ",""+catList);
                             try{
                                 adapter = new ArrayAdapter<String>(AdminAddRemoveCategory.this,R.layout.cat_list_item,catList);
                                 et_view_Category.setThreshold(1);

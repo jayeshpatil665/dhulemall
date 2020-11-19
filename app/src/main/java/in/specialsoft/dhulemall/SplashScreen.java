@@ -9,7 +9,6 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -111,7 +110,6 @@ public class SplashScreen extends AppCompatActivity {
                         }
                     }
                 }catch (Exception e){
-                    Log.i("Error in put data : ",""+e);
                 }
                 //End Write and Read data with URL
             }
