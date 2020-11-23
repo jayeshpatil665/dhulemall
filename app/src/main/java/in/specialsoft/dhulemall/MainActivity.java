@@ -21,19 +21,11 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottom_navigation;
 
-    Button button2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Paper.init(this);
-
-        button2 = findViewById(R.id.button2);
-        String UseSkipKey = Paper.book().read(UserDetails.UserSkipKey);
-        if ("skiped".equals(UseSkipKey))
-        {
-            button2.setVisibility(View.GONE);
-        }
 
 
         bottom_navigation = findViewById(R.id.bottom_navigation);
@@ -56,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case "Profile" :
                         Toast.makeText(MainActivity.this, "Profile ", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this,Profile.class);
+                        startActivity(intent);
                         break;
                 }
                 return true;
@@ -89,12 +83,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //
-    }
-
-    public void logOutUser(View view) {
-        Paper.book().destroy();
-        Intent intent = new Intent(MainActivity.this,SplashScreen.class);
-        startActivity(intent);
-        finish();
     }
 }

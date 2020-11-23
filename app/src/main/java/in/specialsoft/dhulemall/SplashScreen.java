@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -26,6 +27,7 @@ public class SplashScreen extends AppCompatActivity {
 
         Paper.init(this);
         String UsePhoneKey = Paper.book().read(UserDetails.UserPhoneKey);
+        Log.i("USER Phone KEY : "," "+UsePhoneKey);
         if (isNetworkConnected()){
 
             if(!"".equals(UsePhoneKey)){
