@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,14 +32,7 @@ public class HomeFragment extends Fragment {
     ProgressBar progressBar;
     List<Product> productsList;
     View root;
-
-    public HomeFragment() {
-
-        // Required empty public constructor
-    }
-
-
-
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,10 +41,19 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         root=inflater.inflate(R.layout.fragment_home, container, false);
         home_recycler=root.findViewById(R.id.homerecycler);
+        swipeRefreshLayout=root.findViewById(R.id.swipRefresh);
 
        progressBar=root.findViewById(R.id.pgbar);
         progressBar.setVisibility(View.VISIBLE);
             getproducts();
+
+            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    getproducts();
+                    swipeRefreshLayout.setRefreshing(false);
+                }
+            });
         return root;
 
     }

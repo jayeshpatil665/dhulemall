@@ -4,25 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment">
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    android:id="@+id/swipRefresh"
-        android:layout_centerHorizontal="true"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-
-    >
-
+    tools:context=".ProductByCategory.ProductByCatgory">
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/homerecycler"
+        android:id="@+id/productbycategory"
 
         android:layout_alignParentLeft="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <ProgressBar
         android:id="@+id/pgbar"
         android:visibility="gone"

@@ -13,9 +13,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:hardwareAccelerated="true"
         android:theme="@style/Theme.DhuleMall"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".ProductDetaild.ProductDetails"></activity>
+        <activity android:name=".ProductByCategory.ProductByCatgory" />
+        <activity android:name=".Profile" />
         <activity android:name=".AdminUpdateProductDetails" />
         <activity android:name=".RemoveSpecificProduct" />
         <activity android:name=".AddNewProduct" />

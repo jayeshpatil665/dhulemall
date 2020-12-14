@@ -1,6 +1,7 @@
 package in.specialsoft.dhulemall.ProductList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
+import in.specialsoft.dhulemall.ProductDetaild.ProductDetails;
 import in.specialsoft.dhulemall.R;
 
 public class ProductListAdaptor extends RecyclerView.Adapter<ProductListAdaptor.ViewHolder> {
@@ -52,6 +54,37 @@ Context context;
     holder.price.setText("Rs:" +productList.get(position).getPPrice().toString()+"/-");
     holder.cat.setText("Category:"+productList.get(position).getCategoryName().toString());
     holder.disc.setText(""+productList.get(position).getPDescription().toString());
+
+    holder.proctimg.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent=new Intent(context, ProductDetails.class);
+            intent.putExtra("pid",productList.get(position).getPId().toString());
+            context.startActivity(intent);
+
+        }
+    });
+
+
+        holder.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, ProductDetails.class);
+                intent.putExtra("pid",productList.get(position).getPId().toString());
+                context.startActivity(intent);
+
+            }
+        });
+
+        holder.price.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, ProductDetails.class);
+                intent.putExtra("pid",productList.get(position).getPId().toString());
+                context.startActivity(intent);
+
+            }
+        });
 
 
     }

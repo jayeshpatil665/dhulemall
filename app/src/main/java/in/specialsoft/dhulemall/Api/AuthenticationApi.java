@@ -1,6 +1,8 @@
 package in.specialsoft.dhulemall.Api;
 
 import in.specialsoft.dhulemall.Catgories.CategoriesOutput;
+import in.specialsoft.dhulemall.ProductDetaild.ProductDetailInput;
+import in.specialsoft.dhulemall.ProductDetaild.ProductDetailOutput;
 import in.specialsoft.dhulemall.ProductList.ProductListInput;
 import in.specialsoft.dhulemall.ProductList.ProductListOutput;
 import retrofit2.Call;
@@ -12,6 +14,10 @@ public interface AuthenticationApi {
     //product list
     @POST("API/Product/UserSide/getCategoryList.php")
     Call<ProductListOutput> getProductlist(@Body ProductListInput i);
+
+    @POST("API/Product/UserSide/getProductByID.php")
+    Call<ProductDetailOutput> getProductDetail(@Body ProductDetailInput i);
+
     @GET("API/Category/returnData.php")
     Call<CategoriesOutput> getList();
 }
