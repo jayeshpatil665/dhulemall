@@ -125,6 +125,7 @@ public class LoginOptionsActivity extends AppCompatActivity {
                          String result = putData.getResult();
                          if (!result.equals("Error: Database connection")){
                              Users uData1 = gson.fromJson(DecodeString(result),Users.class);
+
                              saveUserDataLocaly(uData1);
                          }
                          else {
