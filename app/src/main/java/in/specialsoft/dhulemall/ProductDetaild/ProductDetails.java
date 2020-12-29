@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,20 +27,20 @@ import retrofit2.Response;
 
 public class ProductDetails extends AppCompatActivity {
     int flag=0;
-    ViewPager viewpager ;
+    //ViewPager viewpager ;
     List<Product1> product;
     String[] links;
     RecyclerView recyclerView;
     String pid;
-
     TextView txt_productnm,txt_productdisc,txt_productPrice,txt_productQuantity;
-
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
         init();
         recyclerView=findViewById(R.id.prouct_img);
+
         pid=getIntent().getStringExtra("pid");
         getdetails();
 
@@ -47,6 +48,7 @@ public class ProductDetails extends AppCompatActivity {
     }
 
     private void init() {
+        progressBar=findViewById(R.id.pg);
         txt_productnm=findViewById(R.id.txt_product_name);
         txt_productdisc=findViewById(R.id.txt_product_Discription);
         txt_productPrice=findViewById(R.id.txt_product_price);
@@ -54,6 +56,7 @@ public class ProductDetails extends AppCompatActivity {
     }
 
     private void getdetails() {
+        progressBar.setVisibility(View.VISIBLE);
         AuthenticationApi api= ApiCLient.getClient().create(AuthenticationApi.class);
         ProductDetailInput i=new ProductDetailInput();
         i.setPId(pid);
@@ -73,6 +76,7 @@ public class ProductDetails extends AppCompatActivity {
                     txt_productdisc.setText("Discription:"+response.body().getProduct().get(0).getPDescription().toString());
                     txt_productPrice.setText("Price :" + response.body().getProduct().get(0).getPPrice());
                     txt_productQuantity.setText(""+response.body().getProduct().get(0).getPQuantity());
+                    progressBar.setVisibility(View.GONE);
                 }else {
                     Toast.makeText(ProductDetails.this, "Server Error please try after some time...", Toast.LENGTH_SHORT).show();
                 }
@@ -114,6 +118,7 @@ public class ProductDetails extends AppCompatActivity {
     }
 
     private void addtocartApi() {
+        progressBar.setVisibility(View.VISIBLE);
         AuthenticationApi api=ApiCLient.getClient().create(AuthenticationApi.class);
         AddToCartInput i=new AddToCartInput();
 
@@ -126,14 +131,10 @@ public class ProductDetails extends AppCompatActivity {
             @Override
             public void onResponse(Call<AddtoCartOutput> call, Response<AddtoCartOutput> response) {
                 if(response.body()!=null){
-                    if (response.body().getOutput().toString().equals("product Updated successfully")){
-                        Snackbar.make(findViewById(R.id.rel),"Product Added To Cart Sucessfully",Snackbar.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
+                        Snackbar.make(findViewById(R.id.rel),response.body().getOutput().toString(),Snackbar.LENGTH_LONG).show();
                         flag=1;
 
-                    }else {
-
-                        Snackbar.make(findViewById(R.id.rel),"Product adding failed",Snackbar.LENGTH_LONG).show();
-                    }
 
                 }else {
                     Snackbar.make(findViewById(R.id.rel),"Network Error Check internet connetion and try again..",Snackbar.LENGTH_LONG).show();

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import in.specialsoft.dhulemall.Cart.CartFragment;
 import in.specialsoft.dhulemall.Catgories.CategoryFragment;
 import io.paperdb.Paper;
 

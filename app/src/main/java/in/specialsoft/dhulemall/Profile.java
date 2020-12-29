@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import in.specialsoft.dhulemall.MyOrdersList.MyOrderList;
 import in.specialsoft.dhulemall.UserDetails.UserDetails;
 import io.paperdb.Paper;
 
@@ -61,5 +62,9 @@ public class Profile extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    public void getOrderList(View view) {
+        startActivity(new Intent(Profile.this,MyOrderList.class));
     }
 }

@@ -3,6 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="5dp"
+    android:id="@+id/res"
+    android:padding="5dp"
     app:cardCornerRadius="10dp">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,6 +26,7 @@
             android:layout_marginTop="5dp"
             android:layout_alignParentLeft="true"
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/pquantity"
@@ -35,19 +39,23 @@
             android:layout_below="@id/pimg"
             android:layout_width="90dp"
             android:layout_height="wrap_content" />
+
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_below="@id/pquantity"
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:layout_height="wrap_content">
             <Button
-                android:onClick="ordernow"
-                android:text="Ordernow"
+                android:id="@+id/btn_edit"
+                 android:textStyle="bold"
+                android:text="Edit Order"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></Button>
             <Button
+                android:id="@+id/btn_cancel"
                 android:layout_margin="5dp"
                 android:text="Cancel Order"
                 android:layout_weight="1"
@@ -55,5 +63,28 @@
                 android:layout_height="wrap_content"></Button>
 
         </LinearLayout>
+        <TextView
+            android:id="@+id/txt_pdiscription"
+            android:layout_below="@id/txt_pname"
+            android:textSize="15dp"
+            android:layout_margin="5dp"
+            android:layout_toLeftOf="@id/pimg"
+            android:layout_marginTop="15dp"
+            android:text="Product discription"
+            android:layout_width="match_parent"
+            android:layout_marginRight="110dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/txt_prdctprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_pdiscription"
+            android:text="Product Price"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="#FF0000"
+            android:layout_marginTop="20dp"
+
+            />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

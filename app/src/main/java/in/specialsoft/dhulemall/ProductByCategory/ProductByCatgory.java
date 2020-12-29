@@ -1,5 +1,3 @@
-
-
 package in.specialsoft.dhulemall.ProductByCategory;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,7 +50,6 @@ public class ProductByCatgory extends AppCompatActivity {
             @Override
             public void onResponse(Call<ProductListOutput> call, Response<ProductListOutput> response) {
                 if (response.body()!=null){
-                    progressBar.setVisibility(View.GONE);
                     productsList=  response.body().getProducts();
                     ProductListAdaptor adaptor=new ProductListAdaptor(productsList,ProductByCatgory.this);
                     LinearLayoutManager layoutManager = new LinearLayoutManager(ProductByCatgory.this);

@@ -19,6 +19,17 @@ public class Cart {
     @SerializedName("p_image1")
     @Expose
     private String pImage1;
+    @SerializedName("p_description")
+    @Expose
+    private String pDescription;
+
+    public String getPDescription() {
+        return pDescription;
+    }
+
+    public void setPDescription(String pDescription) {
+        this.pDescription = pDescription;
+    }
 
     public String getPQuantity() {
         return pQuantity;
