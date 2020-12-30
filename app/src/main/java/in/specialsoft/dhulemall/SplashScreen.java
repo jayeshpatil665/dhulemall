@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
+import in.specialsoft.dhulemall.Api.ApiCLient;
 import in.specialsoft.dhulemall.UserDetails.UserDetails;
 import in.specialsoft.dhulemall.UserDetails.Users;
 import io.paperdb.Paper;
@@ -80,7 +81,7 @@ public class SplashScreen extends AppCompatActivity {
                 String[] data = new String[1];
                 data[0] = ""+ Paper.book().read(UserDetails.UserIDKey);
                 try {
-                    PutData putData = new PutData("https://dhulemall.ml/API/UserDetails/checkUser.php", "POST", field, data);
+                    PutData putData = new PutData(ApiCLient.BASE_URL+"API/UserDetails/checkUser.php", "POST", field, data);
                     if (putData.startPut()) {
                         if (putData.onComplete()) {
                             String result = putData.getResult();

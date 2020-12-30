@@ -9,11 +9,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,6 +27,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
@@ -32,6 +35,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import in.specialsoft.dhulemall.Api.ApiCLient;
 import in.specialsoft.dhulemall.UserDetails.AdminProUpdate;
 
 public class AdminUpdateProductDetails extends AppCompatActivity {
@@ -102,7 +106,7 @@ public class AdminUpdateProductDetails extends AppCompatActivity {
                 String[] data = new String[1];
                 data[0] = "categorys";
 
-                PutData putData = new PutData("https://dhulemall.ml/API/Category/getCategoryNameList.php","POST",field,data);
+                PutData putData = new PutData(ApiCLient.BASE_URL+"API/Category/getCategoryNameList.php","POST",field,data);
                 if (putData.startPut()){
                     if (putData.onComplete()){
                         String result = putData.getResult();
@@ -140,7 +144,7 @@ public class AdminUpdateProductDetails extends AppCompatActivity {
                 data[0] = selectedPro;
                 data[1] = selectedCat;
 
-                PutData putData = new PutData("https://dhulemall.ml/API/Product/getProductDetails.php","POST",field,data);
+                PutData putData = new PutData(ApiCLient.BASE_URL+"API/Product/getProductDetails.php","POST",field,data);
                 if (putData.startPut()){
                     if (putData.onComplete()){
                         String result = putData.getResult();
@@ -156,7 +160,20 @@ public class AdminUpdateProductDetails extends AppCompatActivity {
                             et_Upload_p_quantityy.setText(""+proData.getP_quantity().toString());
                             et_view_Categoryyyy.setText(""+proData.getCategory_name().toString());
                             //set Images
-                            byte[] decodedString = Base64.decode(proData.getP_image1().toString().trim(), Base64.DEFAULT);
+                            try {
+                                Glide.with(getApplicationContext()).load(proData.getP_image1()).centerCrop().placeholder(R.drawable.app_logo).into(imageView22);
+                                img2 = to64String(imageView22.getDrawable());
+
+                                Glide.with(getApplicationContext()).load(proData.getP_image2()).centerCrop().placeholder(R.drawable.app_logo).into(imageView33);
+                                img3 = to64String(imageView33.getDrawable());
+
+                                Glide.with(getApplicationContext()).load(proData.getP_image3()).centerCrop().placeholder(R.drawable.app_logo).into(imageView44);
+                                img4 = to64String(imageView44.getDrawable());
+                            }catch (Exception e){
+                                Log.i("Error in ","Set Image from URL");
+                            }
+
+                           /* byte[] decodedString = Base64.decode(proData.getP_image1().toString().trim(), Base64.DEFAULT);
                             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                             imageView22.setImageBitmap(decodedByte);
                             img2 = getBase64(decodedByte);
@@ -170,7 +187,7 @@ public class AdminUpdateProductDetails extends AppCompatActivity {
                             decodedString = Base64.decode(proData.getP_image3().toString().trim(), Base64.DEFAULT);
                             decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                             imageView44.setImageBitmap(decodedByte);
-                            img4 = getBase64(decodedByte);
+                            img4 = getBase64(decodedByte);*/
 
                             getAllAvailableCategorys();
                         }
@@ -182,7 +199,11 @@ public class AdminUpdateProductDetails extends AppCompatActivity {
             }
         });
     }
-
+    private String to64String(Drawable drawable) {
+        //encode image to base64 string
+        Bitmap bitmap = ((android.graphics.drawable.BitmapDrawable) drawable).getBitmap();
+        return getBase64(bitmap);
+    }
     public static String DecodeString(String string) {
         String tempStr = string;
         tempStr = tempStr.replace("[", "");
@@ -341,7 +362,7 @@ public class AdminUpdateProductDetails extends AppCompatActivity {
                 data[7] = img3;
                 data[8] = img4;
 
-                PutData putData = new PutData("https://dhulemall.ml/API/Product/productUpdate.php","POST",field,data);
+                PutData putData = new PutData(ApiCLient.BASE_URL+"API/Product/productUpdate.php","POST",field,data);
                 if (putData.startPut()){
                     if (putData.onComplete()){
                         String result = putData.getResult();

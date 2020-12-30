@@ -14,6 +14,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import in.specialsoft.dhulemall.Api.ApiCLient;
+
 public class CreateAccountActivity extends AppCompatActivity {
 
     LinearLayout ll_signup;
@@ -98,7 +100,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                 data[3] = pass;
                 data[4] = sec;
 
-                PutData putData = new PutData("https://dhulemall.ml/API/UserDetails/signup.php","POST",field,data);
+                PutData putData = new PutData(ApiCLient.BASE_URL+"API/UserDetails/signup.php","POST",field,data);
                 if (putData.startPut()){
                     if (putData.onComplete()){
                         String result = putData.getResult();

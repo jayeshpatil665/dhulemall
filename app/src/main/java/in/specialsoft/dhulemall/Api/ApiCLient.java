@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiCLient {
     private static Retrofit retrofit = null;
-    private static String BASE_URL="https://dhulemall.ml/";
+    public static String BASE_URL="http://dhulemall.co.in/";
 
 
 

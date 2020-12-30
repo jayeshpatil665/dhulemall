@@ -18,6 +18,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.gson.Gson;
 
+import in.specialsoft.dhulemall.Api.ApiCLient;
+
 public class RemoveSpecificProduct extends AppCompatActivity {
 
     AutoCompleteTextView et_view_Categoryyy,et_view_pro_list;
@@ -85,7 +87,7 @@ public class RemoveSpecificProduct extends AppCompatActivity {
                 String[] data = new String[1];
                 data[0] = selectedDelCat;
 
-                PutData putData = new PutData("https://dhulemall.ml/API/Product/getProductNameList.php","POST",field,data);
+                PutData putData = new PutData(ApiCLient.BASE_URL+"API/Product/getProductNameList.php","POST",field,data);
                 if (putData.startPut()){
                     if (putData.onComplete()){
                         String result = putData.getResult();
@@ -124,7 +126,7 @@ public class RemoveSpecificProduct extends AppCompatActivity {
                 String[] data = new String[1];
                 data[0] = "categorys";
 
-                PutData putData = new PutData("https://dhulemall.ml/API/Category/getCategoryNameList.php","POST",field,data);
+                PutData putData = new PutData(ApiCLient.BASE_URL+"API/Category/getCategoryNameList.php","POST",field,data);
                 if (putData.startPut()){
                     if (putData.onComplete()){
                         String result = putData.getResult();
@@ -182,7 +184,7 @@ public class RemoveSpecificProduct extends AppCompatActivity {
                 data[0] = selectedDelPro;
                 data[1] = selectedDelCat;
 
-                PutData putData = new PutData("https://dhulemall.ml/API/Product/productDelete.php","POST",field,data);
+                PutData putData = new PutData(ApiCLient.BASE_URL+"API/Product/productDelete.php","POST",field,data);
                 if (putData.startPut()){
                     if (putData.onComplete()){
                         String result = putData.getResult();

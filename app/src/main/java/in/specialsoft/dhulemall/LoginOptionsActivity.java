@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 
 import java.util.regex.Pattern;
 
+import in.specialsoft.dhulemall.Api.ApiCLient;
 import in.specialsoft.dhulemall.UserDetails.UserDetails;
 import in.specialsoft.dhulemall.UserDetails.Users;
 import io.paperdb.Paper;
@@ -86,7 +87,7 @@ public class LoginOptionsActivity extends AppCompatActivity {
                 String[] data = new String[2];
                 data[0] = email;
                 data[1] = pass;
-                PutData putData = new PutData("https://dhulemall.ml/API/UserDetails/passwordAuthinticate.php","POST",field,data);
+                PutData putData = new PutData(ApiCLient.BASE_URL+"API/UserDetails/passwordAuthinticate.php","POST",field,data);
                 if (putData.startPut()){
                     if (putData.onComplete()){
                         String result = putData.getResult();
@@ -119,7 +120,7 @@ public class LoginOptionsActivity extends AppCompatActivity {
 
                  String[] data = new String[1];
                  data[0] = email;
-                 PutData putData = new PutData("https://dhulemall.ml/API/UserDetails/privateLoadDataJSON.php","POST",field,data);
+                 PutData putData = new PutData(ApiCLient.BASE_URL+"API/UserDetails/privateLoadDataJSON.php","POST",field,data);
                  if (putData.startPut()){
                      if (putData.onComplete()){
                          String result = putData.getResult();

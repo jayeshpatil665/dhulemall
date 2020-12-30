@@ -36,6 +36,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
 
+import in.specialsoft.dhulemall.Api.ApiCLient;
+
 public class AddNewProduct extends AppCompatActivity {
 
     //Image selection variabels start ----------
@@ -101,7 +103,7 @@ public class AddNewProduct extends AppCompatActivity {
                 String[] data = new String[1];
                 data[0] = "categorys";
 
-                PutData putData = new PutData("https://dhulemall.ml/API/Category/getCategoryNameList.php","POST",field,data);
+                PutData putData = new PutData(ApiCLient.BASE_URL+"API/Category/getCategoryNameList.php","POST",field,data);
                 if (putData.startPut()){
                     if (putData.onComplete()){
                         String result = putData.getResult();
@@ -306,7 +308,7 @@ public class AddNewProduct extends AppCompatActivity {
                 data[7] = img3;
                 data[8] = img4;
 
-                PutData putData = new PutData("https://dhulemall.ml/API/Product/productCreate.php","POST",field,data);
+                PutData putData = new PutData(ApiCLient.BASE_URL+"API/Product/productCreate.php","POST",field,data);
                 if (putData.startPut()){
                     if (putData.onComplete()){
                         String result = putData.getResult();

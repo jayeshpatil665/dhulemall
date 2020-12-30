@@ -31,6 +31,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import in.specialsoft.dhulemall.Api.ApiCLient;
+
 public class AdminAddRemoveCategory extends AppCompatActivity {
 
     //Image selection variabels start ----------
@@ -82,7 +84,7 @@ public class AdminAddRemoveCategory extends AppCompatActivity {
                 String[] data = new String[1];
                 data[0] = "categorys";
 
-                PutData putData = new PutData("https://dhulemall.ml/API/Category/getCategoryNameList.php","POST",field,data);
+                PutData putData = new PutData(ApiCLient.BASE_URL+"API/Category/getCategoryNameList.php","POST",field,data);
                 if (putData.startPut()){
                     if (putData.onComplete()){
                         String result = putData.getResult();
@@ -219,7 +221,7 @@ public class AdminAddRemoveCategory extends AppCompatActivity {
                   String[] data = new String[2];
                   data[0] = cat_name;
                   data[1] = img;
-                  PutData putData = new PutData("https://dhulemall.ml/API/Category/catUpload.php","POST",field,data);
+                  PutData putData = new PutData(ApiCLient.BASE_URL+"API/Category/catUpload.php","POST",field,data);
                   if (putData.startPut()){
                       if (putData.onComplete()){
                           String result = putData.getResult();
@@ -270,7 +272,7 @@ public class AdminAddRemoveCategory extends AppCompatActivity {
                 String[] data = new String[1];
                 data[0] = selectedDelCat;
 
-                PutData putData = new PutData("https://dhulemall.ml/API/Category/catDelete.php","POST",field,data);
+                PutData putData = new PutData(ApiCLient.BASE_URL+"API/Category/catDelete.php","POST",field,data);
                if (putData.startPut()){
                    if (putData.onComplete()){
                        String result = putData.getResult();
