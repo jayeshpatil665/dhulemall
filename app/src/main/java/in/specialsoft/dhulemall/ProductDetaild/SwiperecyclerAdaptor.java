@@ -41,7 +41,6 @@ public class SwiperecyclerAdaptor extends RecyclerView.Adapter<SwiperecyclerAdap
                 .placeholder(R.drawable.ic_user)
                 .into(holder.productimg);
         //Picasso.get().load(products[position]).into(holder.productimg);
-
     }
 
     @Override

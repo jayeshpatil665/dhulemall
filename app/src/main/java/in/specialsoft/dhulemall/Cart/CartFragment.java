@@ -36,7 +36,6 @@ public class CartFragment extends Fragment {
     ProgressBar progressBar;
     int overallTotalPrice = 0;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,7 +67,7 @@ public class CartFragment extends Fragment {
         overallTotalPrice=overallTotalPrice+Integer.parseInt(cartList.get(i).getPPrice())*Integer.parseInt(cartList.get(i).getPQuantity());
 
         }
-        totalvalue.setText("Total Cart Price: \u20B9 "+overallTotalPrice);
+        totalvalue.setText("Total Cart Price : \u20B9 "+overallTotalPrice);
     }
 
     private void getCartitem() {

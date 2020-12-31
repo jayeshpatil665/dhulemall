@@ -27,8 +27,6 @@ Context context;
  public ProductListAdaptor(List<Product> productList, Context context){
      this.context=context;
      this.productList=productList;
-
-
 }
     @NonNull
     @Override
@@ -37,8 +35,6 @@ Context context;
         View product=layoutInflater.inflate(R.layout.product_layout,parent,false);
         ViewHolder viewHolder=new ViewHolder(product);
         return viewHolder;
-
-     
     }
 
     @Override
@@ -47,12 +43,11 @@ Context context;
                 .load(productList.get(position).getPImage1())
                 .apply(RequestOptions.centerCropTransform())
                 .thumbnail(0.5f)
-
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.proctimg);
     holder.name.setText(""+productList.get(position).getPName().toString());
-    holder.price.setText("Rs:" +productList.get(position).getPPrice().toString()+"/-");
-    holder.cat.setText("Category:"+productList.get(position).getCategoryName().toString());
+    holder.price.setText("Rs : " +productList.get(position).getPPrice().toString()+"/-");
+    holder.cat.setText("Category : "+productList.get(position).getCategoryName().toString());
     holder.disc.setText(""+productList.get(position).getPDescription().toString());
 
     holder.proctimg.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +80,6 @@ Context context;
 
             }
         });
-
 
     }
 

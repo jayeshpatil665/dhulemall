@@ -58,14 +58,13 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.ViewHolder> {
                     .placeholder(R.drawable.ic_user)
                     .into(holder.productImg);
 
-            holder.price.setText("Price: \u20B9 " + cartitem.get(position).getPPrice().toString() + "/-");
+            holder.price.setText("Price : \u20B9 " + cartitem.get(position).getPPrice().toString() + "/-");
             holder.name.setText("" + cartitem.get(position).getPName().toString());
             holder.discription.setText("" + cartitem.get(position).getPDescription().toString());
-            holder.quantity.setText("Quantity:" + cartitem.get(position).getPQuantity().toString());
+            holder.quantity.setText("Quantity " + cartitem.get(position).getPQuantity().toString());
             holder.cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     cancelOrder(position);
                 }
             });
@@ -85,14 +84,11 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.ViewHolder> {
                     .placeholder(R.drawable.ic_user)
                     .into(holder.productImg);
 
-            holder.price.setText("Price: \u20B9 " + cartitem.get(position).getPPrice().toString() + "/-");
+            holder.price.setText("Price : \u20B9 " + cartitem.get(position).getPPrice().toString() + "/-");
             holder.name.setText("" + cartitem.get(position).getPName().toString());
             holder.discription.setText("" + cartitem.get(position).getPDescription().toString());
-            holder.quantity.setText("Quantity:" + cartitem.get(position).getPQuantity().toString());
-
+            holder.quantity.setText("Quantity : " + cartitem.get(position).getPQuantity().toString());
         }
-
-
     }
 
     private void cancelOrder(int p) {
@@ -110,9 +106,7 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.ViewHolder> {
                     context.startActivity(new Intent(context, MainActivity.class));
                 }else {
                     Toast.makeText(context,"Please Try Again After Some Time",Toast.LENGTH_LONG).show();
-
                 }
-
             }
 
             @Override
@@ -121,12 +115,10 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.ViewHolder> {
             }
         });
 
-
     }
 
     @Override
     public int getItemCount() {
-
         return cartitem.size();
     }
 

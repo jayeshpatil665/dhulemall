@@ -28,7 +28,6 @@ public class CategorydAaptor extends RecyclerView.Adapter<CategorydAaptor.ViewHo
     public CategorydAaptor(Context context,List<Category1> category) {
         this.context=context;
         this.category=category;
-
     }
 
     @NonNull
@@ -66,7 +65,6 @@ public class CategorydAaptor extends RecyclerView.Adapter<CategorydAaptor.ViewHo
                 context.startActivity(intent);
             }
         });
-
 
     }
 

@@ -2,6 +2,7 @@ package in.specialsoft.dhulemall.PlaceOrder;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,12 +18,15 @@ import java.util.Random;
 
 import in.specialsoft.dhulemall.Api.ApiCLient;
 import in.specialsoft.dhulemall.Api.AuthenticationApi;
+import in.specialsoft.dhulemall.MainActivity;
 import in.specialsoft.dhulemall.R;
 import in.specialsoft.dhulemall.UserDetails.UserDetails;
 import io.paperdb.Paper;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static in.specialsoft.dhulemall.CreateAccountActivity.isValidMob;
 
 public class PlaceOderActivity extends AppCompatActivity {
     private EditText confirm_name,confirm_number,confirm_address,city1;
@@ -37,7 +41,7 @@ public class PlaceOderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_place_oder);
         init();
         totalAmount = getIntent().getIntExtra("value",0);
-        confirm_price.setText("Order Amount:"+totalAmount);
+        confirm_price.setText("Amount to Pay : "+totalAmount);
         genrateorderid();
         confirm_order_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,13 +49,18 @@ public class PlaceOderActivity extends AppCompatActivity {
                 String name,phone,city,address;
                 name=confirm_name.getText().toString();
                 phone=confirm_number.getText().toString();
-                city=city1.getText().toString();
+                city=city1.getText().toString().trim();
                 address=confirm_address.getText().toString();
                 if(name.equals("") || phone.equals("") || city.equals("") || address.equals("")){
                     Toast.makeText(PlaceOderActivity.this,"Please Enter all Required fields",Toast.LENGTH_LONG).show();
                 }else
                 {
-                    placeOrder(name,phone,city,address);
+                    if ( isValidMob(phone)){
+                        placeOrder(name,phone,city,address);
+                    }
+                    else {
+                        Toast.makeText(PlaceOderActivity.this, "Please check your Mobile Number", Toast.LENGTH_SHORT).show();
+                    }
                 }
             };
         });
@@ -79,7 +88,10 @@ public class PlaceOderActivity extends AppCompatActivity {
             public void onResponse(Call<PlaceOrderOutput> call, Response<PlaceOrderOutput> response) {
                 if(response.body()!=null){
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(PlaceOderActivity.this,response.body().getOutput().toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(PlaceOderActivity.this,"Order Placed Succesfully !",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(PlaceOderActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }else {
                     Toast.makeText(PlaceOderActivity.this,"Server Down, Please Try again after some time",Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
@@ -115,8 +127,5 @@ public class PlaceOderActivity extends AppCompatActivity {
         confirm_price = findViewById(R.id.confirm_price);
         confirm_ID = findViewById(R.id.confirm_ID);
     }
-
-
-
 
 }

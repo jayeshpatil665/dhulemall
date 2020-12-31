@@ -38,7 +38,27 @@
             android:background="@android:color/transparent"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:drawableLeft="@drawable/list_category"
-            android:text="View Orders" />
+            android:text="View All Orders" />
+
+        <Button
+            android:id="@+id/button10"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:background="@android:color/transparent"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:drawableLeft="@drawable/product_shiped"
+            android:text="View Shiped Orders" />
+
+        <Button
+            android:id="@+id/button11"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:background="@android:color/transparent"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:drawableLeft="@drawable/product_delivered"
+            android:text="Delivered Orders" />
 
         <Button
             android:id="@+id/button5"

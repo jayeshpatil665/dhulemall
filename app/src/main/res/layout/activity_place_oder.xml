@@ -38,6 +38,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:hint="Your contact No"
+        android:inputType="number"
         />
     <EditText
         android:id="@+id/confirm_address"
@@ -98,10 +99,10 @@
         />
     <ProgressBar
         android:id="@+id/pg"
-        android:layout_centerInParent="true"
         android:visibility="gone"
-        android:layout_width="100dp"
-        android:layout_height="100dp"></ProgressBar>
+        android:layout_centerInParent="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"></ProgressBar>
     <Button
         android:id="@+id/confirm_order_btn"
         android:layout_width="match_parent"
@@ -112,7 +113,6 @@
         android:textColor="@android:color/white"
         android:textStyle="bold"
         android:textSize="20sp"
-
         android:layout_margin="60dp"
         />
 </RelativeLayout>
