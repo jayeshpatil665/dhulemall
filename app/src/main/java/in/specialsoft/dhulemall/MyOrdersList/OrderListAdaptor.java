@@ -36,11 +36,11 @@ public class OrderListAdaptor extends RecyclerView.Adapter<OrderListAdaptor.View
 
     @Override
     public void onBindViewHolder(@NonNull OrderListAdaptor.ViewHolder holder, int position) {
-        holder.txt_name.setText("Billing Name :"+orderList.get(position).getName().toString());
-        holder.txt_phone.setText("Mobile No :"+orderList.get(position).getPhoneNumber().toString());
-        holder.txt_address.setText("Billing Address:"+orderList.get(position).getAddress()+","+orderList.get(position).getCity().toString());
-        holder.txt_price.setText("Total Amount:"+orderList.get(position).getTotalPrice().toString());
-        holder.txt_status.setText("Shipping Status: "+orderList.get(position).getOrderState().toString());
+        holder.txt_name.setText("Billing Name : "+orderList.get(position).getName().toString());
+        holder.txt_phone.setText("Mobile No : "+orderList.get(position).getPhoneNumber().toString());
+        holder.txt_address.setText("Billing Address : "+orderList.get(position).getAddress()+","+orderList.get(position).getCity().toString());
+        holder.txt_price.setText("Total Amount : "+orderList.get(position).getTotalPrice().toString());
+        holder.txt_status.setText("Shipping Status : "+orderList.get(position).getOrderState().toString());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

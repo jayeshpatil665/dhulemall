@@ -7,7 +7,6 @@
     tools:context=".ProductByCategory.ProductByCatgory">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productbycategory"
-
         android:layout_alignParentLeft="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,7 +18,5 @@
         android:layout_centerInParent="true"
         android:layout_width="50dp"
         android:layout_height="50dp"/>
-
-
 
 </RelativeLayout>

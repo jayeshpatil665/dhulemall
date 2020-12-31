@@ -19,18 +19,9 @@ import in.specialsoft.dhulemall.Catgories.CategorydAaptor;
 import in.specialsoft.dhulemall.R;
 
 public class SwiperecyclerAdaptor extends RecyclerView.Adapter<SwiperecyclerAdaptor.Viewhold> {
-
     String[] products;
-
-
-
     public SwiperecyclerAdaptor(String[] products) {
     this.products=products;
-
-
-
-
-
     }
 
     @NonNull
@@ -47,12 +38,9 @@ public class SwiperecyclerAdaptor extends RecyclerView.Adapter<SwiperecyclerAdap
         Glide.with(holder.productimg.getContext())
                 .load(products[position])
                 .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .circleCrop()
                 .placeholder(R.drawable.ic_user)
-
                 .into(holder.productimg);
         //Picasso.get().load(products[position]).into(holder.productimg);
-
     }
 
     @Override

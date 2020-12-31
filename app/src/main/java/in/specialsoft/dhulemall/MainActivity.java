@@ -15,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import in.specialsoft.dhulemall.Cart.CartFragment;
 import in.specialsoft.dhulemall.Catgories.CategoryFragment;
+import in.specialsoft.dhulemall.UserDetails.UserDetails;
 import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         Paper.init(this);
+        String UseSkipKey = Paper.book().read(UserDetails.UserSkipKey);
+
         if (selectedTab==0){
             bottom_navigation.setSelectedItemId(R.id.navigation_home);
             fragment=new HomeFragment();
@@ -45,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,fragment).commit();
 
 
-
 //        bottom_navigation.setSelectedItemId(R.id.navigation_home);
 
         bottom_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -57,30 +59,27 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (men){
                     case "Home" :
-
                         selectedTab=0;
                         frag=new HomeFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,frag).commit();
-
-
-                        Toast.makeText(MainActivity.this, "Home Menu ", Toast.LENGTH_SHORT).show();
                         break;
                     case "categorys" :
-                        Toast.makeText(MainActivity.this, "Categorys ", Toast.LENGTH_SHORT).show();
                         selectedTab=1;
                         frag=new CategoryFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,frag).commit();
-
                         break;
                     case "Cart" :
-                        selectedTab=2;
-                        frag=new CartFragment();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,frag).commit();
-
-                        Toast.makeText(MainActivity.this, "Cart", Toast.LENGTH_SHORT).show();
+                        if ("skiped".equals(UseSkipKey))
+                        {
+                            Toast.makeText(MainActivity.this, "First Login to view cart !", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            selectedTab=2;
+                            frag=new CartFragment();
+                            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,frag).commit();
+                        }
                         break;
                     case "Profile" :
-                        Toast.makeText(MainActivity.this, "Profile ", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(MainActivity.this,Profile.class);
                         startActivity(intent);
                         break;
