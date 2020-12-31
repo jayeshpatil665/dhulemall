@@ -61,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
                         selectedTab=0;
                         frag=new HomeFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,frag).commit();
-
-
                         Toast.makeText(MainActivity.this, "Home Menu ", Toast.LENGTH_SHORT).show();
                         break;
                     case "categorys" :
@@ -76,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
                         selectedTab=2;
                         frag=new CartFragment();
                         getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,frag).commit();
-
                         Toast.makeText(MainActivity.this, "Cart", Toast.LENGTH_SHORT).show();
                         break;
                     case "Profile" :
