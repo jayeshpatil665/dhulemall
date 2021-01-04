@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -25,12 +26,14 @@ public class CategoryFragment extends Fragment {
 RecyclerView recyclerView;
 List<Category1>category;
 View root;
+TextView textView;
 ProgressBar progressBar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
          root=inflater.inflate(R.layout.fragment_category, container, false);
         progressBar=root.findViewById(R.id.pg);
+        textView=root.findViewById(R.id.txtcat);
         progressBar.setVisibility(View.VISIBLE);
         // Inflate the layout for this fragment
         getCategories();
@@ -45,14 +48,20 @@ ProgressBar progressBar;
             @Override
             public void onResponse(Call<CategoriesOutput> call, Response<CategoriesOutput> response) {
                 if (response.body()!=null){
-                    category=response.body().getCategorys();
-                    progressBar.setVisibility(View.GONE);
-                    recyclerView=root.findViewById(R.id.categories_recycle);
 
-                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
-                    recyclerView.setLayoutManager(gridLayoutManager);
-                    CategorydAaptor aaptor=new CategorydAaptor(getContext(),category);
-                    recyclerView.setAdapter(aaptor);
+                    category=response.body().getCategorys();
+                    if (category==null){
+                        textView.setVisibility(View.VISIBLE);
+                    }else{
+
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView=root.findViewById(R.id.categories_recycle);
+
+                        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+                        recyclerView.setLayoutManager(gridLayoutManager);
+                        CategorydAaptor aaptor=new CategorydAaptor(getContext(),category);
+                        recyclerView.setAdapter(aaptor);
+                    }
                 }
             }
 

@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Search Bar
 
-    @Override
+/*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.custom_toolbar2,menu);
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         return super.onCreateOptionsMenu(menu);
-    }
+    }*/
 
     @Override
     public void onBackPressed() {

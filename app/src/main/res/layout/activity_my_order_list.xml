@@ -17,7 +17,11 @@
         android:gravity="center"
         android:padding="10dp"
         android:textStyle="bold" />
-
+    <ProgressBar
+        android:id="@+id/pg"
+        android:layout_centerInParent="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"></ProgressBar>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_below="@id/textView2"
         android:id="@+id/orderrecycler"

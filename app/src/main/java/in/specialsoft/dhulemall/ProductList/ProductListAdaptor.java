@@ -22,12 +22,12 @@ import in.specialsoft.dhulemall.ProductDetaild.ProductDetails;
 import in.specialsoft.dhulemall.R;
 
 public class ProductListAdaptor extends RecyclerView.Adapter<ProductListAdaptor.ViewHolder> {
-List<Product> productList;
-Context context;
- public ProductListAdaptor(List<Product> productList, Context context){
-     this.context=context;
-     this.productList=productList;
-}
+    List<Product> productList;
+    Context context;
+    public ProductListAdaptor(List<Product> productList, Context context){
+        this.context=context;
+        this.productList=productList;
+    }
     @NonNull
     @Override
     public ProductListAdaptor.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,20 +45,20 @@ Context context;
                 .thumbnail(0.5f)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.proctimg);
-    holder.name.setText(""+productList.get(position).getPName().toString());
-    holder.price.setText("Rs : " +productList.get(position).getPPrice().toString()+"/-");
-    holder.cat.setText("Category : "+productList.get(position).getCategoryName().toString());
-    holder.disc.setText(""+productList.get(position).getPDescription().toString());
+        holder.name.setText(""+productList.get(position).getPName().toString());
+        holder.price.setText("Rs : " +productList.get(position).getPPrice().toString()+"/-");
+        holder.cat.setText("Category : "+productList.get(position).getCategoryName().toString());
+        holder.disc.setText(""+productList.get(position).getPDescription().toString());
 
-    holder.proctimg.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent=new Intent(context, ProductDetails.class);
-            intent.putExtra("pid",productList.get(position).getPId().toString());
-            context.startActivity(intent);
+        holder.proctimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, ProductDetails.class);
+                intent.putExtra("pid",productList.get(position).getPId().toString());
+                context.startActivity(intent);
 
-        }
-    });
+            }
+        });
 
 
         holder.name.setOnClickListener(new View.OnClickListener() {
@@ -88,9 +88,16 @@ Context context;
         return productList.size();
     }
 
+    public void filterData(List<Product> filterlist) {
+        productList=filterlist;
+        notifyDataSetChanged();
+
+
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
-     ImageView proctimg;
-     TextView name,disc,price,cat;
+        ImageView proctimg;
+        TextView name,disc,price,cat;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             proctimg=itemView.findViewById(R.id.product_image);

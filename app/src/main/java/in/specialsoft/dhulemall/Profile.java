@@ -65,6 +65,9 @@ public class Profile extends AppCompatActivity {
     }
 
     public void getOrderList(View view) {
-        startActivity(new Intent(Profile.this,MyOrderList.class));
+        Intent intent=new Intent(Profile.this,MyOrderList.class);
+        intent.putExtra("flag",1);
+
+        startActivity(intent);
     }
 }

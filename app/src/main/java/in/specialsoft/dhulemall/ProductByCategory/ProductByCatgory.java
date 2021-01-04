@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class ProductByCatgory extends AppCompatActivity {
     RecyclerView recyclerView;
     ProgressBar progressBar;
     List<Product> productsList;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class ProductByCatgory extends AppCompatActivity {
         categoryname=getIntent().getStringExtra("name");
         recyclerView=findViewById(R.id.productbycategory);
         progressBar=findViewById(R.id.pgbar);
+        textView=findViewById(R.id.txt);
         getproduct();
     }
 
@@ -51,13 +54,18 @@ public class ProductByCatgory extends AppCompatActivity {
             public void onResponse(Call<ProductListOutput> call, Response<ProductListOutput> response) {
                 if (response.body()!=null){
                     productsList=  response.body().getProducts();
-                    ProductListAdaptor adaptor=new ProductListAdaptor(productsList,ProductByCatgory.this);
-                    LinearLayoutManager layoutManager = new LinearLayoutManager(ProductByCatgory.this);
-                    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                    recyclerView.setLayoutManager(layoutManager);
-                    recyclerView.setHasFixedSize(false);
-                    recyclerView.setItemAnimator(new DefaultItemAnimator());
-                    recyclerView.setAdapter(adaptor);
+                    if (productsList==null){
+                        textView.setVisibility(View.VISIBLE);
+                    }else {
+
+                        ProductListAdaptor adaptor=new ProductListAdaptor(productsList,ProductByCatgory.this);
+                        LinearLayoutManager layoutManager = new LinearLayoutManager(ProductByCatgory.this);
+                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                        recyclerView.setLayoutManager(layoutManager);
+                        recyclerView.setHasFixedSize(false);
+                        recyclerView.setItemAnimator(new DefaultItemAnimator());
+                        recyclerView.setAdapter(adaptor);
+                    }
                 }
             }
 

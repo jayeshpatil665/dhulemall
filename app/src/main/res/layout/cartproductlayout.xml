@@ -59,7 +59,7 @@
                 android:id="@+id/btn_cancel"
                 android:layout_margin="5dp"
                 android:drawableRight="@drawable/remove_product"
-                android:text="Remov"
+                android:text="Remove"
                 android:padding="0dp"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"

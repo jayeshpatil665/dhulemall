@@ -61,7 +61,7 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.ViewHolder> {
             holder.price.setText("Price : \u20B9 " + cartitem.get(position).getPPrice().toString() + "/-");
             holder.name.setText("" + cartitem.get(position).getPName().toString());
             holder.discription.setText("" + cartitem.get(position).getPDescription().toString());
-            holder.quantity.setText("Quantity " + cartitem.get(position).getPQuantity().toString());
+            holder.quantity.setText("Quantity: " + cartitem.get(position).getPQuantity().toString());
             holder.cancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

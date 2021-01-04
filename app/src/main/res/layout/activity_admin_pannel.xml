@@ -33,16 +33,18 @@
         <Button
             android:id="@+id/button3"
             android:padding="10dp"
+            android:onClick="getNewOrderList"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:background="@android:color/transparent"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:drawableLeft="@drawable/list_category"
-            android:text="View All Orders" />
+            android:text="View New Orders" />
 
         <Button
             android:id="@+id/button10"
             android:padding="10dp"
+            android:onClick="getShipedOrder"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:background="@android:color/transparent"
@@ -53,6 +55,7 @@
         <Button
             android:id="@+id/button11"
             android:padding="10dp"
+            android:onClick="getDeliveredOrders"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:background="@android:color/transparent"

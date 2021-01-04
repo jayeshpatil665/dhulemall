@@ -2,6 +2,8 @@ package in.specialsoft.dhulemall;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -10,11 +12,15 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import in.specialsoft.dhulemall.Api.ApiCLient;
@@ -30,10 +36,16 @@ import retrofit2.Response;
 public class HomeFragment extends Fragment {
     RecyclerView home_recycler;
     ProgressBar progressBar;
-    List<Product> productsList;
+    List<Product> productsList,displayedList;
     View root;
+    ProductListAdaptor mAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
-
+    ProductListAdaptor adaptor;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,10 +54,15 @@ public class HomeFragment extends Fragment {
         root=inflater.inflate(R.layout.fragment_home, container, false);
         home_recycler=root.findViewById(R.id.homerecycler);
         swipeRefreshLayout=root.findViewById(R.id.swipRefresh);
-
-       progressBar=root.findViewById(R.id.pgbar);
+        progressBar=root.findViewById(R.id.pgbar);
         progressBar.setVisibility(View.VISIBLE);
+//         adaptor=new ProductListAdaptor(productsList,getContext());
+
+
             getproducts();
+        adaptor=new ProductListAdaptor(productsList,getContext());
+
+  //      mAdapter=new ProductListAdaptor(productsList,getContext());
 
             swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -54,9 +71,57 @@ public class HomeFragment extends Fragment {
                     swipeRefreshLayout.setRefreshing(false);
                 }
             });
+
+
         return root;
 
     }
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.custom_toolbar2,menu);
+
+        MenuItem item = menu.findItem(R.id.navigation_search);
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+               // filter(query.toString());
+        //        mAdapter.getFilter().filter(query);
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+//                mAdapter.getFilter().filter(newText);
+                filter(newText);
+                return true;
+
+            }
+
+
+        });
+
+        super.onCreateOptionsMenu(menu, inflater);
+
+    }
+
+    private void filter(String text) {
+        List<Product> filterlist=new ArrayList<>();
+        for (Product p: productsList){
+            if (p.getPName().toLowerCase().toString().contains(text.toLowerCase().toString()) ||p.getPDescription().toLowerCase().toString().contains(text.toLowerCase().toString()) || p.getCategoryName().toLowerCase().toString().contains(text.toLowerCase().toString())){
+                filterlist.add(p);
+
+            }
+            adaptor.filterData(filterlist);
+        }
+
+    }
+
+
+
 
     private void getproducts() {
         AuthenticationApi api= ApiCLient.getClient().create(AuthenticationApi.class);
@@ -71,9 +136,9 @@ public class HomeFragment extends Fragment {
 
                     productsList=  response.body().getProducts();
 
-                    ProductListAdaptor adaptor=new ProductListAdaptor(productsList,getContext());
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                    adaptor=new ProductListAdaptor(productsList,getContext());
 
                     home_recycler.setLayoutManager(layoutManager);
                     home_recycler.setHasFixedSize(false);
@@ -92,6 +157,7 @@ public class HomeFragment extends Fragment {
         });
     }
 }
+
 /*
 com.google.gson.JsonSyntaxException: java.lang.IllegalStateException: Expected BEGIN_OBJECT but was BEGIN_ARRAY at line 1 column 2 path $
  */

@@ -49,6 +49,7 @@ public class ProductDetails extends AppCompatActivity {
 
         pid=getIntent().getStringExtra("pid");
         getdetails();
+        txt_productQuantity.setText(""+1);
 
 
     }
@@ -81,7 +82,7 @@ public class ProductDetails extends AppCompatActivity {
                     txt_productnm.setText(""+response.body().getProduct().get(0).getPName().toString());
                     txt_productdisc.setText("Discription : "+response.body().getProduct().get(0).getPDescription().toString());
                     txt_productPrice.setText("Price : " + response.body().getProduct().get(0).getPPrice()+"/-");
-                    txt_productQuantity.setText(""+response.body().getProduct().get(0).getPQuantity());
+                    //txt_productQuantity.setText(""+response.body().getProduct().get(0).getPQuantity());
                     progressBar.setVisibility(View.GONE);
                 }else {
                     Toast.makeText(ProductDetails.this, "Server Error please try after some time...", Toast.LENGTH_SHORT).show();

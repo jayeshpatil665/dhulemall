@@ -17,6 +17,7 @@ import in.specialsoft.dhulemall.Cart.Cart;
 import in.specialsoft.dhulemall.Cart.CartAdaptor;
 import in.specialsoft.dhulemall.Cart.CartInput;
 import in.specialsoft.dhulemall.Cart.CartOutput;
+import in.specialsoft.dhulemall.FeatureContraoller;
 import in.specialsoft.dhulemall.R;
 import in.specialsoft.dhulemall.UserDetails.UserDetails;
 import io.paperdb.Paper;
@@ -36,18 +37,25 @@ public class ActivityOrderDetails extends AppCompatActivity {
         setContentView(R.layout.activity_order_details);
         cartRecycler=findViewById(R.id.cartrecycler);
         progressBar=findViewById(R.id.pg);
-        ordid=getIntent().getStringExtra("orderid");
+        ordid= FeatureContraoller.getInstance().getOrderid().toString();
         getCartitem();
     }
 
     private void getCartitem() {
+
         progressBar.setVisibility(View.VISIBLE);
         AuthenticationApi api= ApiCLient.getClient().create(AuthenticationApi.class);
-        int id = Paper.book().read(UserDetails.UserIDKey);
+//        int id = Paper.book().read(UserDetails.UserIDKey);
         OrderDetailInput i=new OrderDetailInput();
-        i.setOrderId(ordid);
-        i.setId(id);
-        
+        if (FeatureContraoller.getInstance().getFlag()==2){
+            i.setOrderId(ordid);
+            i.setId(Integer.parseInt(FeatureContraoller.getInstance().getId()));
+        }else if(FeatureContraoller.getInstance().getFlag()==1) {
+            int id = Paper.book().read(UserDetails.UserIDKey);
+
+            i.setOrderId(ordid);
+            i.setId(id);
+        }
         Call<OrderDetailOutput> call=api.getOrderDetails(i);
         call.enqueue(new Callback<OrderDetailOutput>() {
             @Override

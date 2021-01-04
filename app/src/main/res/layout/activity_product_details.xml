@@ -24,6 +24,12 @@
         android:id="@+id/prouct_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+            <View
+                android:layout_below="@id/prouct_img"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#E91E63"
+                />
             <TextView
                 android:id="@+id/txt_product_name"
                 android:layout_marginTop="10dp"
@@ -35,6 +41,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+
             <TextView
                 android:id="@+id/txt_product_Discription"
                 android:layout_margin="10dp"
@@ -43,6 +51,13 @@
                 android:textSize="18sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+            <View
+                android:layout_below="@id/txt_product_Discription"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#E91E63"
+                />
+
             <TextView
                 android:id="@+id/txt_product_price"
                 android:layout_marginTop="10dp"
@@ -55,10 +70,10 @@
                 android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
             <LinearLayout
                 android:id="@+id/txt"
                 android:layout_margin="10dp"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@id/txt_product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -73,6 +88,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
+
 
                 <Button
                     android:onClick="onRemove"

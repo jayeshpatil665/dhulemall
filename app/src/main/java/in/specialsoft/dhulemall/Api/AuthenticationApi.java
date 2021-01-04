@@ -1,5 +1,8 @@
 package in.specialsoft.dhulemall.Api;
 
+import in.specialsoft.dhulemall.AdminOrderStates.ChangeOrderStateInput;
+import in.specialsoft.dhulemall.AdminOrderStates.OrderOverviewInput;
+import in.specialsoft.dhulemall.AdminOrderStates.OutPut;
 import in.specialsoft.dhulemall.Cart.CartInput;
 import in.specialsoft.dhulemall.Cart.CartOutput;
 import in.specialsoft.dhulemall.Cart.RemoveCartInput;
@@ -40,9 +43,14 @@ public interface AuthenticationApi {
     Call<RemoveCartOutput> deleteItem(@Body RemoveCartInput i);
     @POST("API/OrderOverview/placeOrder.php")
     Call<PlaceOrderOutput> placeOrder(@Body PlaceOrderInput i);
-      @POST("API/OrderOverview/myOrders.php")
-      Call<OrderListOutput> getAllOrder(@Body OrderListInput i);
-      @POST("API/OrderOverview/myOrderDetails.php")
-      Call<OrderDetailOutput> getOrderDetails(@Body OrderDetailInput i);
+    @POST("API/OrderOverview/myOrders.php")
+    Call<OrderListOutput> getAllOrder(@Body OrderListInput i);
+    @POST("API/OrderOverview/myOrderDetails.php")
+    Call<OrderDetailOutput> getOrderDetails(@Body OrderDetailInput i);
+    @POST("API/OrderOverview/adminOrderOverView.php")
+    Call<OrderListOutput> getOrderOverView(@Body OrderOverviewInput i);
+    @POST("API/OrderOverview/adminChangeOrderState.php")
+    Call<OutPut> changeOrderState(@Body ChangeOrderStateInput i);
+
 
 }
