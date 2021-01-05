@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "770567653362",
+    "project_id": "dhule-mall",
+    "storage_bucket": "dhule-mall.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770567653362:android:f989651b4e6f064fa4cd6b",
+        "android_client_info": {
+          "package_name": "in.specialsoft.dhulemall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770567653362-0kp1jgfnriqbkqh177sl3mf7faftp2kr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1Re2YHqBAb3oZ4mMoUWHaF39BVM_dc2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770567653362-0kp1jgfnriqbkqh177sl3mf7faftp2kr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

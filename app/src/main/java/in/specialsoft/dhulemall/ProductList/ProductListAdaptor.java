@@ -105,6 +105,8 @@ public class ProductListAdaptor extends RecyclerView.Adapter<ProductListAdaptor.
             disc=itemView.findViewById(R.id.txt_product_Discription);
             price=itemView.findViewById(R.id.txt_product_price);
             cat=itemView.findViewById(R.id.txt_product_Category);
+            //cat=itemView.findViewById(R.id.accelerate);
+
         }
     }
 }

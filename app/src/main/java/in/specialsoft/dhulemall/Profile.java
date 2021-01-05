@@ -42,10 +42,13 @@ public class Profile extends AppCompatActivity {
         }
     }
 
+
+
     public void tologInPage(View view) {
         Intent logInIntent = new Intent(Profile.this,LoginOptionsActivity.class);
         startActivity(logInIntent);
     }
+
 
     public void toCreateAcount(View view) {
         Intent createAccountIntent = new Intent(Profile.this,CreateAccountActivity.class);
@@ -61,12 +64,13 @@ public class Profile extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(Profile.this,MainActivity.class));
     }
 
     public void getOrderList(View view) {
+        FeatureContraoller.getInstance().setFlag(1);
         Intent intent=new Intent(Profile.this,MyOrderList.class);
-        intent.putExtra("flag",1);
+
 
         startActivity(intent);
     }

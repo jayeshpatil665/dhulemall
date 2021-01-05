@@ -18,6 +18,7 @@ import java.util.List;
 
 import in.specialsoft.dhulemall.AdminOrderStates.ChangeOrderStateInput;
 import in.specialsoft.dhulemall.AdminOrderStates.OutPut;
+import in.specialsoft.dhulemall.AdminPannel;
 import in.specialsoft.dhulemall.Api.ApiCLient;
 import in.specialsoft.dhulemall.Api.AuthenticationApi;
 import in.specialsoft.dhulemall.Catgories.CategorydAaptor;
@@ -50,6 +51,8 @@ public class OrderListAdaptor extends RecyclerView.Adapter<OrderListAdaptor.View
     @Override
     public void onBindViewHolder(@NonNull OrderListAdaptor.ViewHolder holder, int position) {
         if (flag==1) {
+            holder.dttime.setText("Date/Time : "+orderList.get(position).getDateTime().toString());
+
             holder.txt_name.setText("Billing Name : " + orderList.get(position).getName().toString());
             holder.txt_phone.setText("Mobile No : " + orderList.get(position).getPhoneNumber().toString());
             holder.txt_address.setText("Billing Address : " + orderList.get(position).getAddress() + "," + orderList.get(position).getCity().toString());
@@ -60,7 +63,8 @@ public class OrderListAdaptor extends RecyclerView.Adapter<OrderListAdaptor.View
                 public void onClick(View view) {
                     String orderid = orderList.get(position).getOrderId().toString();
                     Intent intent = new Intent(context, ActivityOrderDetails.class);
-                    intent.putExtra("orderid", orderid);
+                    FeatureContraoller.getInstance().setOrderid(orderid);
+
                     context.startActivity(intent);
                 }
             });
@@ -70,7 +74,7 @@ public class OrderListAdaptor extends RecyclerView.Adapter<OrderListAdaptor.View
             holder.txt_address.setText("Billing Address : " + orderList.get(position).getAddress() + "," + orderList.get(position).getCity().toString());
             holder.txt_price.setText("Total Amount : " + orderList.get(position).getTotalPrice().toString());
             holder.txt_status.setText("Shipping Status : " + orderList.get(position).getOrderState().toString());
-
+            holder.dttime.setText("Date/Time : "+orderList.get(position).getDateTime().toString());
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -110,9 +114,10 @@ public class OrderListAdaptor extends RecyclerView.Adapter<OrderListAdaptor.View
                                         @Override
                                         public void onResponse(Call<OutPut> call, Response<OutPut> response) {
                                             if (response.body() != null) {
-                                                Intent intent=new Intent(context,MyOrderList.class);
+                                                Intent intent=new Intent(context, AdminPannel.class);
                                                 //intent.putExtra("flag",2);
                                                 context.startActivity(intent);
+
                                             }
                                         }
 
@@ -138,7 +143,7 @@ public class OrderListAdaptor extends RecyclerView.Adapter<OrderListAdaptor.View
                                         @Override
                                         public void onResponse(Call<OutPut> call, Response<OutPut> response) {
                                             if (response.body() != null) {
-                                                Intent intent=new Intent(context,MyOrderList.class);
+                                                Intent intent=new Intent(context,AdminPannel.class);
                                                 //intent.putExtra("flag",2);//
                                                 context.startActivity(intent);
                                             }
@@ -164,7 +169,7 @@ public class OrderListAdaptor extends RecyclerView.Adapter<OrderListAdaptor.View
                                         @Override
                                         public void onResponse(Call<OutPut> call, Response<OutPut> response) {
                                             if (response.body() != null) {
-                                                Intent intent=new Intent(context,MyOrderList.class);
+                                                Intent intent=new Intent(context,AdminPannel.class);
                                                 //intent.putExtra("flag",2);
                                                 context.startActivity(intent);
                                             }
@@ -200,7 +205,7 @@ public class OrderListAdaptor extends RecyclerView.Adapter<OrderListAdaptor.View
                                         public void onResponse(Call<OutPut> call, Response<OutPut> response) {
                                             if (response.body() != null) {
                                                 Toast.makeText(context, "Removed ...", Toast.LENGTH_SHORT).show();
-                                                Intent intent=new Intent(context,MyOrderList.class);
+                                                Intent intent=new Intent(context,AdminPannel.class);
                                                 //intent.putExtra("flag",2);
                                                 context.startActivity(intent);
                                             }
@@ -213,7 +218,7 @@ public class OrderListAdaptor extends RecyclerView.Adapter<OrderListAdaptor.View
                                     });
 
                                 }
-                                else if (orderList.get(position).getOrderState().equals("shipped"))
+                                else if (orderList.get(position).getOrderState().equals("Shipped"))
                                 {
                                     Toast.makeText(context, "Product not Delivered yet !", Toast.LENGTH_SHORT).show();
                                 }
@@ -230,8 +235,8 @@ public class OrderListAdaptor extends RecyclerView.Adapter<OrderListAdaptor.View
                                         public void onResponse(Call<OutPut> call, Response<OutPut> response) {
                                             if (response.body() != null) {
                                                 Toast.makeText(context, "Removed ...", Toast.LENGTH_SHORT).show();
-                                                Intent intent=new Intent(context,MyOrderList.class);
-                                                intent.putExtra("flag",2);
+                                                Intent intent=new Intent(context,AdminPannel.class);
+
                                                 context.startActivity(intent);
                                             }
                                         }
@@ -258,8 +263,8 @@ public class OrderListAdaptor extends RecyclerView.Adapter<OrderListAdaptor.View
             });
         }
 
-
     }
+
 
     @Override
     public int getItemCount() {
@@ -267,8 +272,9 @@ public class OrderListAdaptor extends RecyclerView.Adapter<OrderListAdaptor.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txt_name,txt_price,txt_address,txt_phone,txt_status;
+        TextView txt_name,txt_price,txt_address,txt_phone,txt_status,dttime;
         CardView cardView;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_name=itemView.findViewById(R.id.txt_name);
@@ -277,6 +283,7 @@ public class OrderListAdaptor extends RecyclerView.Adapter<OrderListAdaptor.View
             txt_phone=itemView.findViewById(R.id.txt_phone);
             txt_status=itemView.findViewById(R.id.txt_status);
             cardView=itemView.findViewById(R.id.crd);
+            dttime=itemView.findViewById(R.id.txt_dttime);
         }
     }
 }
