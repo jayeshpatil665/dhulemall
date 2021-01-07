@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -80,6 +81,15 @@ public class ProductListAdaptor extends RecyclerView.Adapter<ProductListAdaptor.
 
             }
         });
+        holder.c.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context, ProductDetails.class);
+                intent.putExtra("pid",productList.get(position).getPId().toString());
+                context.startActivity(intent);
+
+            }
+        });
 
     }
 
@@ -97,6 +107,7 @@ public class ProductListAdaptor extends RecyclerView.Adapter<ProductListAdaptor.
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView proctimg;
+        CardView c;
         TextView name,disc,price,cat;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -106,7 +117,7 @@ public class ProductListAdaptor extends RecyclerView.Adapter<ProductListAdaptor.
             price=itemView.findViewById(R.id.txt_product_price);
             cat=itemView.findViewById(R.id.txt_product_Category);
             //cat=itemView.findViewById(R.id.accelerate);
-
+            c=itemView.findViewById(R.id.card);
         }
     }
 }

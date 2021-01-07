@@ -13,6 +13,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"/>
     <TextView
+        android:visibility="gone"
         android:id="@+id/txt"
         android:background="@color/teal_700"
         android:layout_width="match_parent"

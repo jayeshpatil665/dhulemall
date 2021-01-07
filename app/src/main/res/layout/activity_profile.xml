@@ -102,6 +102,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:onClick="getwhatsapp"
                     android:id="@+id/ll_profile3"
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
@@ -139,8 +140,9 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:background="#ffffff"
-                            android:paddingBottom="30dp"
-                            android:src="@drawable/ic_baseline_keyboard_arrow_right_24" />
+                            android:layout_gravity="center_vertical"
+
+                            android:src="@drawable/wa" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -190,6 +192,7 @@
             </LinearLayout>
 
             <Button
+
                 android:id="@+id/button2"
                 android:onClick="logOutUser"
                 android:layout_marginTop="10dp"

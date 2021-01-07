@@ -41,13 +41,10 @@ public class CategorydAaptor extends RecyclerView.Adapter<CategorydAaptor.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CategorydAaptor.ViewHolder holder, int position) {
-
         Glide.with(context)
                 .load(category.get(position).getCatImg().toString())
-                .circleCrop()
                 .placeholder(R.drawable.ic_user)
                 .into(holder.category_img);
-
         holder.category_name.setText(""+category.get(position).getCategoryName().toString());
         holder.category_name.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +78,6 @@ public class CategorydAaptor extends RecyclerView.Adapter<CategorydAaptor.ViewHo
             super(itemView);
             category_img=itemView.findViewById(R.id.category_image);
             category_name=itemView.findViewById(R.id.category_name);
-
         }
     }
 }

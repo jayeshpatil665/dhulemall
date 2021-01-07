@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -135,6 +136,8 @@ public class HomeFragment extends Fragment {
                  progressBar.setVisibility(View.GONE);
 
                     productsList=  response.body().getProducts();
+                  //  GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+                   // home_recycler.setLayoutManager(gridLayoutManager);
 
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
