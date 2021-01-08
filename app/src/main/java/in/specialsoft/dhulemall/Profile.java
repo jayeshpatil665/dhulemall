@@ -43,8 +43,6 @@ public class Profile extends AppCompatActivity {
         }
     }
 
-
-
     public void tologInPage(View view) {
         Intent logInIntent = new Intent(Profile.this,LoginOptionsActivity.class);
         startActivity(logInIntent);
@@ -58,9 +56,11 @@ public class Profile extends AppCompatActivity {
 
     public void logOutUser(View view) {
         Paper.book().destroy();
-        Intent intent = new Intent(Profile.this,SplashScreen.class);
-        startActivity(intent);
         finish();
+        moveTaskToBack(true);
+        Intent intent = new Intent(Profile.this,HomeActivity.class);
+        startActivity(intent);
+        System.exit(0);
     }
 
     @Override
@@ -71,8 +71,6 @@ public class Profile extends AppCompatActivity {
     public void getOrderList(View view) {
         FeatureContraoller.getInstance().setFlag(1);
         Intent intent=new Intent(Profile.this,MyOrderList.class);
-
-
         startActivity(intent);
     }
 
