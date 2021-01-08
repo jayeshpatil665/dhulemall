@@ -18,13 +18,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/im_account"
+                android:layout_marginTop="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/splash_back">
-            </ImageView>
+                android:layout_centerHorizontal="true"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/online_shopping">
+
+            </com.airbnb.lottie.LottieAnimationView>
 
             <Button
                 android:id="@+id/acc_signin"
@@ -83,7 +87,7 @@
 
                         <TextView
                             android:id="@+id/acc_app1"
-                            android:layout_width="340dp"
+                            android:layout_width="300dp"
                             android:layout_height="60dp"
                             android:background="#ffffff"
                             android:text="\n\t\t Manage your orders here\n\t\t Check order status | view previous orders."
@@ -128,7 +132,7 @@
 
                         <TextView
                             android:id="@+id/acc_app11"
-                            android:layout_width="340dp"
+                            android:layout_width="300dp"
                             android:layout_height="60dp"
                             android:background="#ffffff"
                             android:text="\n\t\t Contact Admin if you are facing problem \n\t\t reguarding to your order."
@@ -141,7 +145,6 @@
                             android:layout_height="60dp"
                             android:background="#ffffff"
                             android:layout_gravity="center_vertical"
-
                             android:src="@drawable/wa" />
                     </LinearLayout>
                 </LinearLayout>
@@ -172,7 +175,7 @@
 
                         <TextView
                             android:id="@+id/acc_app111"
-                            android:layout_width="340dp"
+                            android:layout_width="300dp"
                             android:layout_height="60dp"
                             android:background="#ffffff"
                             android:text="\n\t\t About Dhule Mall\n\t\t information | Current version."

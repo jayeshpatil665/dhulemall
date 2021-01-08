@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -60,18 +59,18 @@ public class HomeFragment extends Fragment {
 //         adaptor=new ProductListAdaptor(productsList,getContext());
 
 
-            getproducts();
+        getproducts();
         adaptor=new ProductListAdaptor(productsList,getContext());
 
-  //      mAdapter=new ProductListAdaptor(productsList,getContext());
+        //      mAdapter=new ProductListAdaptor(productsList,getContext());
 
-            swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    getproducts();
-                    swipeRefreshLayout.setRefreshing(false);
-                }
-            });
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getproducts();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
 
         return root;
@@ -88,8 +87,8 @@ public class HomeFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-               // filter(query.toString());
-        //        mAdapter.getFilter().filter(query);
+                // filter(query.toString());
+                //        mAdapter.getFilter().filter(query);
 
                 return false;
             }
@@ -110,15 +109,17 @@ public class HomeFragment extends Fragment {
     }
 
     private void filter(String text) {
-        List<Product> filterlist=new ArrayList<>();
-        for (Product p: productsList){
-            if (p.getPName().toLowerCase().toString().contains(text.toLowerCase().toString()) ||p.getPDescription().toLowerCase().toString().contains(text.toLowerCase().toString()) || p.getCategoryName().toLowerCase().toString().contains(text.toLowerCase().toString())){
-                filterlist.add(p);
-
+        try {
+            List<Product> filterlist = new ArrayList<>();
+            for (Product p : productsList) {
+                if (p.getPName().toLowerCase().toString().contains(text.toLowerCase().toString()) || p.getPDescription().toLowerCase().toString().contains(text.toLowerCase().toString()) || p.getCategoryName().toLowerCase().toString().contains(text.toLowerCase().toString())) {
+                    filterlist.add(p);
+                }
+                adaptor.filterData(filterlist);
             }
-            adaptor.filterData(filterlist);
+        }catch (Exception e){
+            Log.e("tag",e.toString());
         }
-
     }
 
 
@@ -133,11 +134,9 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<ProductListOutput> call, Response<ProductListOutput> response) {
                 if (response.body()!=null){
-                 progressBar.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.GONE);
 
                     productsList=  response.body().getProducts();
-                  //  GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
-                   // home_recycler.setLayoutManager(gridLayoutManager);
 
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
                     layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -153,7 +152,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(Call<ProductListOutput> call, Throwable t) {
-                    Log.i("error",t.toString());
+                Log.i("error",t.toString());
                 Toast.makeText(getContext(),t.toString(),Toast.LENGTH_LONG).show();
 
             }

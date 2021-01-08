@@ -43,6 +43,7 @@ public class CategorydAaptor extends RecyclerView.Adapter<CategorydAaptor.ViewHo
     public void onBindViewHolder(@NonNull CategorydAaptor.ViewHolder holder, int position) {
         Glide.with(context)
                 .load(category.get(position).getCatImg().toString())
+                .circleCrop()
                 .placeholder(R.drawable.ic_user)
                 .into(holder.category_img);
         holder.category_name.setText(""+category.get(position).getCategoryName().toString());

@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -20,7 +21,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     LinearLayout ll_signup;
     TextInputEditText ed_up_name,ed_up_mob,ed_up_id,ed_up_pass,ed_up_check_pass,ed_up_sec;
-    String toastValidation="";
+    static String toastValidation="";
     ProgressBar progress1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,10 +106,12 @@ public class CreateAccountActivity extends AppCompatActivity {
                     if (putData.onComplete()){
                         String result = putData.getResult();
                         if (result.equals("Sign Up Success")) {
-                            toastValidation ="Account created successfully";
+                            //toastValidation ="Account created successfully";
+                            Toast.makeText(CreateAccountActivity.this, "Account created successfully", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            toastValidation ="Error in User creation !";
+                            //toastValidation ="Error in User creation !";
+                            Toast.makeText(CreateAccountActivity.this, "Error : user may already exist !", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
