@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="30sp"
+        android:textColor="@color/black"
         android:text="SignUp Page" />
     <com.google.android.material.textfield.TextInputLayout
         android:layout_marginTop="5dp"

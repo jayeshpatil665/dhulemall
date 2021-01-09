@@ -20,7 +20,8 @@
         <activity android:name=".PlaceOrder.PlaceOderActivity" />
         <activity android:name=".ProductDetaild.ProductDetails" />
         <activity android:name=".ProductByCategory.ProductByCatgory" />
-        <activity android:name=".Profile" />
+        <activity android:name=".Profile"
+            android:excludeFromRecents="true"/>
         <activity android:name=".AdminUpdateProductDetails" />
         <activity android:name=".RemoveSpecificProduct" />
         <activity android:name=".AddNewProduct" />

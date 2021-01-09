@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //finish();
-                finish();
+                finishAffinity();
                 System.exit(0);
             }
         });

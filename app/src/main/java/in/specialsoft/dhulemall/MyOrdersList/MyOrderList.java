@@ -57,6 +57,7 @@ public class MyOrderList extends AppCompatActivity {
     public void onBackPressed() {
         if (flag==1){
            startActivity(new Intent(MyOrderList.this, Profile.class));
+           finish();
         }else if (flag==2){
             startActivity(new Intent(MyOrderList.this, AdminPannel.class));
 

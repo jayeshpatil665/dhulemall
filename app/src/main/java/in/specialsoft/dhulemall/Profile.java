@@ -65,7 +65,8 @@ public class Profile extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        startActivity(new Intent(Profile.this, MainActivity.class));
+        finish();
     }
 
     public void getOrderList(View view) {

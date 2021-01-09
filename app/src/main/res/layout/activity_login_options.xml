@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@color/black"
         android:text="Login Page"
         android:textSize="30sp" />
 
@@ -65,6 +66,7 @@
         android:text="Admin Login"
         android:textAlignment="textEnd"
         android:textSize="18sp"
+        android:visibility="gone"
         android:textStyle="bold" />
 
     <Button
