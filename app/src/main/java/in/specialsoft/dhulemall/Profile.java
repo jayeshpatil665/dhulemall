@@ -16,7 +16,7 @@ import io.paperdb.Paper;
 public class Profile extends AppCompatActivity {
 
     Button button2,acc_signin,acc_create_acc;
-    LinearLayout ll_profile2,ll_profile3;
+    LinearLayout ll_profile2,ll_profile3,ll_profile4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +29,7 @@ public class Profile extends AppCompatActivity {
 
         ll_profile2 = findViewById(R.id.ll_profile2);
         ll_profile3 = findViewById(R.id.ll_profile3);
+        ll_profile4 = findViewById(R.id.ll_profile4);
 
         String UseSkipKey = Paper.book().read(UserDetails.UserSkipKey);
         if ("skiped".equals(UseSkipKey))
@@ -41,6 +42,14 @@ public class Profile extends AppCompatActivity {
             acc_signin.setVisibility(View.GONE);
             acc_create_acc.setVisibility(View.GONE);
         }
+
+        ll_profile4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this,AboutActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void tologInPage(View view) {
