@@ -195,4 +195,9 @@ public class LoginOptionsActivity extends AppCompatActivity {
             showSnackMessage(toastValidation);
         }
     }
+
+    public void toResetPassword(View view) {
+        Intent intent = new Intent(LoginOptionsActivity.this,ForgetPasswordActivity.class);
+        startActivity(intent);
+    }
 }

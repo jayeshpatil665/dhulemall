@@ -85,7 +85,7 @@ public class Profile extends AppCompatActivity {
     }
 
     public void getwhatsapp(View view) {
-        String mobilenumber="+919325147257";
+        String mobilenumber="+919130919088";
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone="+mobilenumber+"Hii")));
     }
 }
