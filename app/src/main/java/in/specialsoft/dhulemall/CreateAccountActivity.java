@@ -2,6 +2,7 @@ package in.specialsoft.dhulemall;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -44,10 +45,8 @@ public class CreateAccountActivity extends AppCompatActivity {
     public void signupTheUser(View view) {
         if(checkIfEmpty()){
             progress1.setVisibility(View.GONE);
-            showSnackMessage(toastValidation);
         }
         else {
-            showSnackMessage(toastValidation);
         }
     }
 
@@ -69,16 +68,16 @@ public class CreateAccountActivity extends AppCompatActivity {
                     return true;
                 }
                 else {
-                    toastValidation ="Please check your passwords !";
+                    Toast.makeText(this, "Please check your passwords !", Toast.LENGTH_SHORT).show();
                     return false;
                 }
             }
             else {
-                toastValidation ="Please check your Mobile Number or Email !";
+                Toast.makeText(this, "Please check your Mobile Number or Email !", Toast.LENGTH_SHORT).show();
                 return false;
             }
         }
-        toastValidation ="All fields are required !";
+        Toast.makeText(this, "All fields are required !", Toast.LENGTH_SHORT).show();
         return false;
     }
 
@@ -108,6 +107,9 @@ public class CreateAccountActivity extends AppCompatActivity {
                         if (result.equals("Sign Up Success")) {
                             //toastValidation ="Account created successfully";
                             Toast.makeText(CreateAccountActivity.this, "Account created successfully", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(CreateAccountActivity.this,LoginOptionsActivity.class);
+                            startActivity(intent);
+                            finish();
                         }
                         else {
                             //toastValidation ="Error in User creation !";

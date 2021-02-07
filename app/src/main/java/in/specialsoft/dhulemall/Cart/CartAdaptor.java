@@ -55,7 +55,7 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.ViewHolder> {
         if (flag==1) {
             Glide.with(context)
                     .load(cartitem.get(position).getPImage1().toString())
-                    .placeholder(R.drawable.ic_user)
+                    .placeholder(R.drawable.ic_loading)
                     .into(holder.productImg);
 
             holder.price.setText("Price : \u20B9 " + cartitem.get(position).getPPrice().toString() + "/-");
@@ -81,7 +81,7 @@ public class CartAdaptor extends RecyclerView.Adapter<CartAdaptor.ViewHolder> {
             holder.cancel.setVisibility(View.GONE);
             Glide.with(context)
                     .load(cartitem.get(position).getPImage1().toString())
-                    .placeholder(R.drawable.ic_user)
+                    .placeholder(R.drawable.ic_loading)
                     .into(holder.productImg);
 
             holder.price.setText("Price : \u20B9 " + cartitem.get(position).getPPrice().toString() + "/-");

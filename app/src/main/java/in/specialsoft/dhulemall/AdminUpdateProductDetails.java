@@ -303,7 +303,7 @@ public class AdminUpdateProductDetails extends AppCompatActivity {
     private String getBase64(Bitmap bm1) {
         if (bm1 != null){
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            bm1.compress(Bitmap.CompressFormat.JPEG,50,bos);
+            bm1.compress(Bitmap.CompressFormat.JPEG,35,bos);
             bb = bos.toByteArray();
             base64String = Base64.encodeToString(bb,Base64.DEFAULT);
         }

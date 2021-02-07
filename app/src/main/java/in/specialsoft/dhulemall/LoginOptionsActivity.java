@@ -48,10 +48,8 @@ public class LoginOptionsActivity extends AppCompatActivity {
     public void loginTheUser(View view) {
         if(checkIfEmpty()){
             progress2.setVisibility(View.GONE);
-            showSnackMessage(toastValidation);
         }
         else {
-            showSnackMessage(toastValidation);
         }
     }
 
@@ -66,11 +64,11 @@ public class LoginOptionsActivity extends AppCompatActivity {
                     return true;
                 }
                 else {
-                    toastValidation ="Please check your email !";
+                Toast.makeText(LoginOptionsActivity.this, "Please check your email !", Toast.LENGTH_SHORT).show();
                     return false;
                 }
         }
-        toastValidation ="All fields are required !";
+        Toast.makeText(LoginOptionsActivity.this, "All fields are required !", Toast.LENGTH_SHORT).show();
         return false;
     }
 
@@ -92,7 +90,7 @@ public class LoginOptionsActivity extends AppCompatActivity {
                     if (putData.onComplete()){
                         String result = putData.getResult();
                         if (result.equals("Authorised")){
-                            Toast.makeText(LoginOptionsActivity.this, "Authorised", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(LoginOptionsActivity.this, "Authorised", Toast.LENGTH_SHORT).show();
                             getUserData(email);
                             progress2.setVisibility(View.GONE);
                             Intent intent = new Intent(LoginOptionsActivity.this,MainActivity.class);
@@ -100,7 +98,8 @@ public class LoginOptionsActivity extends AppCompatActivity {
                             finish();
                         }
                         else {
-                            toastValidation ="Error : "+result;
+                            //toastValidation ="Error : "+result;
+                            Toast.makeText(LoginOptionsActivity.this, "Check Login credentials", Toast.LENGTH_SHORT).show();
                             Log.i("ERRRRRRRRRRor : ",""+result);
                         }
                     }
@@ -130,7 +129,7 @@ public class LoginOptionsActivity extends AppCompatActivity {
                              saveUserDataLocaly(uData1);
                          }
                          else {
-                                toastValidation ="Error : in data retrival";
+                             Toast.makeText(LoginOptionsActivity.this, "Error : in data retrival", Toast.LENGTH_SHORT).show();
                          }
                      }
                  }

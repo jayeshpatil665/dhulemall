@@ -37,8 +37,7 @@ public class SwiperecyclerAdaptor extends RecyclerView.Adapter<SwiperecyclerAdap
     public void onBindViewHolder(@NonNull SwiperecyclerAdaptor.Viewhold holder, int position) {
         Glide.with(holder.productimg.getContext())
                 .load(products[position])
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-                .placeholder(R.drawable.ic_user)
+                .placeholder(R.drawable.ic_loading)
                 .into(holder.productimg);
         //Picasso.get().load(products[position]).into(holder.productimg);
     }
