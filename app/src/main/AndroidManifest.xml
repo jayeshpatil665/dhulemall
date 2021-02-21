@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DhuleMall"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ForgetPasswordActivity"></activity>
+        <activity android:name=".ProductDetaild.FulllImage"></activity>
+        <activity android:name=".ForgetPasswordActivity" />
         <activity android:name=".AboutActivity" />
         <activity android:name=".MyOrdersList.ActivityOrderDetails" />
         <activity android:name=".PlaceOrder.PlaceOderActivity" />

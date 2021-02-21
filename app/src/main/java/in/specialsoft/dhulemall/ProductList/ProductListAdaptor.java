@@ -40,10 +40,13 @@ public class ProductListAdaptor extends RecyclerView.Adapter<ProductListAdaptor.
 
     @Override
     public void onBindViewHolder(@NonNull ProductListAdaptor.ViewHolder holder, int position) {
+        RequestOptions myOptions = new RequestOptions()
+                .centerCrop();
+
         Glide.with(context)
                 .load(productList.get(position).getPImage1())
-                .apply(RequestOptions.centerCropTransform())
-                .placeholder(R.drawable.ic_loading)
+                .apply(myOptions)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.proctimg);
         holder.name.setText(""+productList.get(position).getPName().toString());
         holder.price.setText("Rs : " +productList.get(position).getPPrice().toString()+"/-");

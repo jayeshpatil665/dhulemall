@@ -80,7 +80,7 @@ public class ProductDetails extends AppCompatActivity {
                     recyclerView.setLayoutManager(new LinearLayoutManager(ProductDetails.this, LinearLayoutManager.HORIZONTAL, false));
                     recyclerView.setAdapter(new SwiperecyclerAdaptor(links));
                     txt_productnm.setText(""+response.body().getProduct().get(0).getPName().toString());
-                    txt_productdisc.setText("Discription : "+response.body().getProduct().get(0).getPDescription().toString());
+                    txt_productdisc.setText("" +response.body().getProduct().get(0).getPDescription().toString());
                     txt_productPrice.setText("Price : " + response.body().getProduct().get(0).getPPrice()+"/-");
                     //txt_productQuantity.setText(""+response.body().getProduct().get(0).getPQuantity());
                     progressBar.setVisibility(View.GONE);

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:weightSum="100"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <androidx.cardview.widget.CardView
     android:layout_margin="5dp"
     android:id="@+id/card"
     android:padding="5dp"
-    android:layout_width="match_parent"
+    android:layout_weight="50"
+    android:layout_width="wrap_content"
     app:cardCornerRadius="8dp"
     android:layout_height="wrap_content">
     <RelativeLayout
@@ -17,7 +19,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_alignParentLeft="true"
+
             android:id="@+id/product_image"
             android:src="@drawable/ic_user"
             android:layout_width="150dp"
@@ -25,10 +27,10 @@
         <TextView
             android:layout_marginRight="15dp"
             android:id="@+id/txt_product_name"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@id/product_image"
+            android:layout_below="@id/product_image"
+
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="15dp"
             android:text="Product name"
             android:fontFamily="sans-serif"
             android:textStyle="bold"
@@ -36,11 +38,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
+            android:visibility="gone"
             android:id="@+id/txt_product_Discription"
             android:layout_marginRight="10dp"
-            android:layout_toRightOf="@id/product_image"
+
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:layout_marginTop="5dp"
             android:layout_below="@id/txt_product_name"
             android:text="Discription : "
@@ -50,16 +53,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
+
             android:id="@+id/txt_product_price"
             android:layout_marginRight="15dp"
-            android:layout_toRightOf="@id/product_image"
+
             android:textColor="#FF0404"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:layout_marginTop="5dp"
-            android:layout_below="@id/txt_product_Discription"
+            android:layout_below="@id/txt_product_name"
             android:text="Product Price : "
             android:fontFamily="sans-serif"
-            android:textStyle="bold"
+
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -67,17 +71,16 @@
         <TextView
             android:id="@+id/txt_product_Category"
             android:layout_marginRight="15dp"
-            android:layout_toRightOf="@id/product_image"
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:layout_marginTop="5dp"
             android:layout_below="@id/txt_product_price"
             android:text="Product Category : "
             android:fontFamily="sans-serif"
-
+            android:layout_marginBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
-</RelativeLayout>
+</LinearLayout>

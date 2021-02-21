@@ -2,6 +2,7 @@ package in.specialsoft.dhulemall.ProductByCategory;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,9 +60,9 @@ public class ProductByCatgory extends AppCompatActivity {
                     }else {
 
                         ProductListAdaptor adaptor=new ProductListAdaptor(productsList,ProductByCatgory.this);
-                        LinearLayoutManager layoutManager = new LinearLayoutManager(ProductByCatgory.this);
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        recyclerView.setLayoutManager(layoutManager);
+                        GridLayoutManager gridLayoutManger = new GridLayoutManager(ProductByCatgory.this,2);
+
+                        recyclerView.setLayoutManager(gridLayoutManger);
                         recyclerView.setHasFixedSize(false);
                         recyclerView.setItemAnimator(new DefaultItemAnimator());
                         recyclerView.setAdapter(adaptor);

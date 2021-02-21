@@ -1,6 +1,7 @@
 package in.specialsoft.dhulemall.ProductDetaild;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -35,10 +37,31 @@ public class SwiperecyclerAdaptor extends RecyclerView.Adapter<SwiperecyclerAdap
 
     @Override
     public void onBindViewHolder(@NonNull SwiperecyclerAdaptor.Viewhold holder, int position) {
+        holder.productimg1.setVisibility(View.GONE);
+        Glide.with(holder.productimg.getContext())
+                .load(products[position])
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .placeholder(R.drawable.ic_loading)
+                .into(holder.productimg);
         Glide.with(holder.productimg.getContext())
                 .load(products[position])
                 .placeholder(R.drawable.ic_loading)
-                .into(holder.productimg);
+                .into(holder.productimg1);
+        holder.productimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+             holder.productimg.setVisibility(View.GONE);
+                holder.productimg1.setVisibility(View.VISIBLE);
+            }
+        });
+        holder.productimg1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.productimg1.setVisibility(View.GONE);
+                holder.productimg.setVisibility(View.VISIBLE);
+            }
+        });
+
         //Picasso.get().load(products[position]).into(holder.productimg);
     }
 
@@ -48,12 +71,13 @@ public class SwiperecyclerAdaptor extends RecyclerView.Adapter<SwiperecyclerAdap
     }
 
     public class Viewhold extends RecyclerView.ViewHolder {
-        ImageView productimg;
+        ImageView productimg,productimg1;
 
 
         public Viewhold(@NonNull View itemView) {
             super(itemView);
             productimg=itemView.findViewById(R.id.prouct_img1);
+            productimg1=itemView.findViewById(R.id.prouct_img2);
         }
     }
 }
