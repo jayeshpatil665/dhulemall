@@ -127,8 +127,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         Pattern p = Pattern.compile("(0/91)?[7-9][0-9]{9}");
 
         Matcher m = p.matcher(s);
-        //return (m.find() && m.group().equals(s));
-        return true;
+        return (m.find() && m.group().equals(s));
     }
     //Validate Email ID
     public static boolean isEmailValid(String email)

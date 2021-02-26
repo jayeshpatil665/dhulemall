@@ -25,6 +25,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
     EditText et_mob,et_otp,et_sec,et_new_pass;
     Button btn_otp,btn_submit,btn_reset,button12,btn_reset_pass;
     static String security="";
+    static String email = "";
     static String  mob="";
     static String code="";
 
@@ -100,6 +101,7 @@ public class ForgetPasswordActivity extends AppCompatActivity {
                                 }
                                 else{
                                     security=uData1.getSecurity();
+                                    email = uData1.getEmail();
                                     Toast.makeText(ForgetPasswordActivity.this, "User Exist !", Toast.LENGTH_SHORT).show();
                                     makeFieldsVisible();
                                 }
@@ -137,6 +139,19 @@ public class ForgetPasswordActivity extends AppCompatActivity {
             else
             {
                 Toast.makeText(this, "Security answer Don't Matched", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+    public void toresetByEmail(View view) {
+        String securityAns = et_sec.getText().toString();
+        if (! securityAns.equals("")){
+            if (securityAns.equals(email)){
+                Toast.makeText(this, "Email Matched", Toast.LENGTH_SHORT).show();
+                toResetingPassword();
+            }
+            else
+            {
+                Toast.makeText(this, "Email Don't Matched", Toast.LENGTH_SHORT).show();
             }
         }
     }

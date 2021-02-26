@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
@@ -161,13 +162,13 @@ public class AdminUpdateProductDetails extends AppCompatActivity {
                             et_view_Categoryyyy.setText(""+proData.getCategory_name().toString());
                             //set Images
                             try {
-                                Glide.with(getApplicationContext()).load(proData.getP_image1()).centerCrop().placeholder(R.drawable.app_logo).into(imageView22);
+                                Glide.with(getApplicationContext()).load(proData.getP_image1()).centerCrop().diskCacheStrategy(DiskCacheStrategy.NONE).placeholder(R.drawable.ic_loading).into(imageView22);
                                 img2 = to64String(imageView22.getDrawable());
 
-                                Glide.with(getApplicationContext()).load(proData.getP_image2()).centerCrop().placeholder(R.drawable.app_logo).into(imageView33);
+                                Glide.with(getApplicationContext()).load(proData.getP_image2()).centerCrop().diskCacheStrategy(DiskCacheStrategy.NONE).placeholder(R.drawable.ic_loading).into(imageView33);
                                 img3 = to64String(imageView33.getDrawable());
 
-                                Glide.with(getApplicationContext()).load(proData.getP_image3()).centerCrop().placeholder(R.drawable.app_logo).into(imageView44);
+                                Glide.with(getApplicationContext()).load(proData.getP_image3()).centerCrop().diskCacheStrategy(DiskCacheStrategy.NONE).placeholder(R.drawable.ic_loading).into(imageView44);
                                 img4 = to64String(imageView44.getDrawable());
                             }catch (Exception e){
                                 Log.i("Error in ","Set Image from URL");
@@ -202,7 +203,16 @@ public class AdminUpdateProductDetails extends AppCompatActivity {
     private String to64String(Drawable drawable) {
         //encode image to base64 string
         Bitmap bitmap = ((android.graphics.drawable.BitmapDrawable) drawable).getBitmap();
-        return getBase64(bitmap);
+        return getBase64Temp(bitmap);
+    }
+    private String getBase64Temp(Bitmap bm1) {
+        if (bm1 != null){
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            //bm1.compress(Bitmap.CompressFormat.JPEG,50,bos);
+            bb = bos.toByteArray();
+            base64String = Base64.encodeToString(bb,Base64.DEFAULT);
+        }
+        return base64String;
     }
     public static String DecodeString(String string) {
         String tempStr = string;

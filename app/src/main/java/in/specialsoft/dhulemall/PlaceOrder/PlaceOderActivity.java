@@ -55,7 +55,7 @@ public class PlaceOderActivity extends AppCompatActivity {
                     Toast.makeText(PlaceOderActivity.this,"Please Enter all Required fields",Toast.LENGTH_LONG).show();
                 }else
                 {
-                    if ( isValidMob(phone)){
+                    if (isValidMob(phone)){
                         placeOrder(name,phone,city,address);
                     }
                     else {

@@ -46,6 +46,7 @@ public class ProductListAdaptor extends RecyclerView.Adapter<ProductListAdaptor.
         Glide.with(context)
                 .load(productList.get(position).getPImage1())
                 .apply(myOptions)
+                .placeholder(R.drawable.ic_loading)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.proctimg);
         holder.name.setText(""+productList.get(position).getPName().toString());
